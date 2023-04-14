@@ -6,6 +6,7 @@ import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/routes/pageroute.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,17 +39,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    _splashScreen();
+    _login();
     super.initState();
   }
 
-  _splashScreen() {
-    Timer.periodic(const Duration(seconds: 2), (timer) {
-      Get.offNamed(NameRoutes.loginScreen);
-      timer.cancel();
+  _login() async {
+    var shareP = await SharedPreferences.getInstance();
+    bool isLogin = shareP.getBool("login") ?? false;
+    Timer(const Duration(seconds: 3), () {
+      if (isLogin) {
+        Get.offNamed(NameRoutes.dashBoardScreen);
+      } else {
+        Get.offNamed(NameRoutes.loginScreen);
+      }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,4 +90,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
 }
