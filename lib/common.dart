@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Common {
-  static Widget button({required String text}) {
+  static Widget button({required String text,GestureTapCallback? onTap}) {
     return GestureDetector(
+      onTap: onTap,
         child: Container(
 
       alignment: Alignment.center,
@@ -21,12 +22,16 @@ class Common {
   }
 
   static Widget textFormFiled(
-      {Widget? suficon,
+      {
+        Widget? suficon,
+        Widget? preicon,
       TextEditingController? controller,
       String? labeltext,
+        dynamic validator,
      }) {
     return TextFormField(
       controller: controller,
+      validator: validator,
       decoration: InputDecoration(
           labelText: labeltext,
           focusedBorder: const OutlineInputBorder(
@@ -34,10 +39,11 @@ class Common {
               borderSide: BorderSide(color: Colors.grey)),
           labelStyle: const TextStyle(color: Colors.grey),
           hintText: labeltext,
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: const TextStyle(color: Colors.black),
           focusColor: Colors.black,
           hoverColor: Colors.black,
           suffixIcon: suficon,
+          prefixIcon: preicon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
           )),

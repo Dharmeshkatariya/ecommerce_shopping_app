@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.3
   flutter_svg: ^2.0.5
+  dio: ^5.1.1
 
 dev_dependencies:
   flutter_test:
