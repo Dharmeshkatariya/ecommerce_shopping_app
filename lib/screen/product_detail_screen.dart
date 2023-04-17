@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
+import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -21,22 +22,63 @@ class ProductDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _stackImage(),
-                Text("minimal"),
-                Row(
-                  children: [
-                    Text("price"),
-                    GestureDetector(onTap: () {}, child: const Icon(Icons.add)),
-                    Text("qty"),
-                    GestureDetector(
-                        onTap: () {},
-                        child: SvgPicture.asset("assets/icon/minus.svg")),
-                  ],
-                )
+                _text(
+                    text: "minimal", fontWeight: FontWeight.w400, fontSize: 24),
+                _qtyRow(),
+                _reviewRow(),
+                _text(
+                    text:
+                        "Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. ",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: Colors.grey),
+                _bottomRow()
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _qtyRow() {
+    return Row(
+      children: [
+        _text(text: "Rs 56", fontWeight: FontWeight.w600, fontSize: 32),
+        Spacer(),
+        GestureDetector(onTap: () {}, child: const Icon(Icons.add)),
+        Text("qty"),
+        GestureDetector(
+            onTap: () {}, child: SvgPicture.asset("assets/icon/minus.svg")),
+      ],
+    );
+  }
+
+  Widget _reviewRow() {
+    return Row(
+      children: [
+        SvgPicture.asset("assets/icon/star.svg"),
+        SizedBox(
+          width: 10,
+        ),
+        _text(text: "4.5"),
+        SizedBox(
+          width: 10,
+        ),
+        _text(text: "(50 review)"),
+      ],
+    );
+  }
+
+  Widget _text(
+      {required String text,
+      double? fontSize,
+      FontWeight? fontWeight,
+      Color? color}) {
+    return Text(
+      text,
+      style: GoogleFontsStyle.poppins(
+          fontSize: fontSize, fontWeight: fontWeight, color: color),
     );
   }
 
@@ -84,13 +126,17 @@ class ProductDetailScreen extends StatelessWidget {
 
   Widget _bottomRow() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
             decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(12)),
-            child: Image.asset("assets/image/save.png")),
-        Common.button(text: "Add to Cart", onTap: () {}),
+                color: Colors.grey, borderRadius: BorderRadius.circular(12)),
+            child: Image.asset(
+              "assets/image/save.png",
+              color: Colors.white,
+            )),
+        Common.button(text: "Add to Cart", onTap: () {}, width: 240),
       ],
     );
   }

@@ -4,33 +4,32 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Common {
-  static Widget button({required String text,GestureTapCallback? onTap}) {
+  static Widget button({required String text, GestureTapCallback? onTap,   double? width,}) {
     return GestureDetector(
-      onTap: onTap,
+        onTap: onTap,
         child: Container(
-
-
-
-      alignment: Alignment.center,
-      decoration:  BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(8)),
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-      child: Text(
-        text,
-        style: GoogleFonts.inter(
-            fontWeight: FontWeight.w400, fontSize: 17, color: Colors.white),
-      ),
-    ));
+          width: width,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.black, borderRadius: BorderRadius.circular(8)),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Text(
+            text,
+            style: GoogleFonts.inter(
+                fontWeight: FontWeight.w400, fontSize: 17, color: Colors.white),
+          ),
+        ));
   }
 
-  static Widget textFormFiled(
-      {
-        Widget? suficon,
-        Widget? preicon,
-      TextEditingController? controller,
-      String? labeltext,
-        dynamic validator,
-     }) {
+
+  static Widget textFormFiled({
+    Widget? suficon,
+    Widget? preicon,
+    TextEditingController? controller,
+    String? labeltext,
+    dynamic validator,
+  }) {
     return TextFormField(
       controller: controller,
       validator: validator,
@@ -51,7 +50,6 @@ class Common {
           )),
     );
   }
-
 
   static Widget headerRow() {
     return Row(
