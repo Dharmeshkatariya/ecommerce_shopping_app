@@ -1,10 +1,85 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/modal/product_entity.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'database.dart';
+
 class Common {
-  static Widget button({required String text, GestureTapCallback? onTap,   double? width,}) {
+  int getRandomId() {
+    var random = Random();
+    return random.nextInt(100);
+  }
+
+  static var database;
+
+  initDatabase() async {
+    database ??= await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  }
+
+  insertData(Product product) async {
+    try {
+      database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+      final productDao = database.productDao;
+
+      var res = await productDao.insertProduct(product);
+      print(res);
+      getAllData();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<List<Product>> getAllData() async {
+    database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+    final productDao = database.productDao;
+    List<Product> res = await productDao.findAllProduct();
+    print(res);
+    return res;
+  }
+
+  updateProduct(Product product) async {
+    try {
+      final productDao = database.productDao;
+      var res = await productDao.updateProductById(
+          product.id,
+          product.productName,
+          product.productPrice,
+          product.productPrice,
+          product.productImage);
+
+      print(res);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  insertCard(Card card) async {
+    try {
+      final cardDao = database.cardDao;
+
+      var res = await cardDao.insertCard(card);
+      print(res);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<List<Card>> getAllCard() async {
+    final cardDao = database.cardDao;
+    List<Card> res = await cardDao.findAllCards();
+    print(res);
+    return res;
+  }
+
+  static Widget button({
+    required String text,
+    GestureTapCallback? onTap,
+    double? width,
+  }) {
     return GestureDetector(
         onTap: onTap,
         child: Container(
@@ -21,7 +96,6 @@ class Common {
           ),
         ));
   }
-
 
   static Widget textFormFiled({
     Widget? suficon,

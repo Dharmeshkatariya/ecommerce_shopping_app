@@ -1,5 +1,6 @@
 import 'package:furniture_shoping/binding/dashboardscreen_binding.dart';
 import 'package:furniture_shoping/binding/loginscreen_binding.dart';
+import 'package:furniture_shoping/binding/productdetail_binding.dart';
 import 'package:furniture_shoping/binding/signup_screen_binding.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/screen/dashboard_screen.dart';
@@ -28,6 +29,7 @@ class PageRoutes {
     GetPage(
       name: NameRoutes.productDetailScreen,
       page: () => ProductDetailScreen(),
+      binding: ProductDetailScreenBinding(),
     ),
   ];
 }

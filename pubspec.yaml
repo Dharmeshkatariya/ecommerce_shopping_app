@@ -41,11 +41,14 @@ dependencies:
   dio: ^5.1.1
   shared_preferences: ^2.1.0
   connectivity_plus: ^3.0.4
+  floor: ^1.4.1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  floor_generator: ^1.4.1
+  build_runner: ^2.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

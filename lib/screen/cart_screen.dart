@@ -9,10 +9,12 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
-          "Favoutire",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          "Favoutires",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
         ),
       ),
       body: Container(
@@ -20,7 +22,6 @@ class CartScreen extends StatelessWidget {
         child: Column(children: [
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.all(8),
               itemCount: 10,
               itemBuilder: (BuildContext context, int index) {
                 return _favList(index);
@@ -36,41 +37,37 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget _favList(int index) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.network(
-                    "https://w7.pngwing.com/pngs/606/648/png-transparent-california-style-pizza-sicilian-pizza-chrono-pizza-fast-food-pizza-menu-food-recipe-pizza-delivery-thumbnail.png"),
+    return Column(
+      children: [
+        Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                "https://www.shutterstock.com/image-vector/vector-illustration-chair-on-white-260nw-1165935439.jpg",
+                height: 100,
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("add data"),
-                        Icon(Icons.close),
-                      ],
-                    ),
-                   const  Text("add data"),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Icon(Icons.shopping_cart),
-                        ],
-                      ),
-                    ),
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text("add data"),
+                    Icon(Icons.close),
                   ],
                 ),
-              )
-            ],
-          )
-        ],
-      ),
+                const Text("add data"),
+                Row(
+                  children: [
+                    const Icon(Icons.shopping_cart),
+                  ],
+                ),
+              ],
+            )
+          ],
+        )
+      ],
     );
   }
 }

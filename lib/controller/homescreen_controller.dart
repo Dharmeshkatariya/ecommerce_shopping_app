@@ -8,6 +8,8 @@ class HomeScreenController extends GetxController
     with StateMixin<List<ProductData>> {
   List<CategoryData> categoryList = [];
   List<ProductData> productList = [];
+  List<ProductData> filterFinalList = [];
+  RxInt selectedIndex = 0.obs;
 
   @override
   void onInit() {
@@ -20,6 +22,11 @@ class HomeScreenController extends GetxController
   _dashboardHomeApi() async {
     categoryList.clear();
     productList.clear();
+    CategoryData categoryData = CategoryData();
+    categoryData.id = 0;
+    categoryData.categoryName = 'All';
+    categoryData.categoryThumb = '';
+    categoryList.add(categoryData);
     try {
       change(productList, status: RxStatus.loading());
       var response = await _restClient.get(
@@ -53,10 +60,16 @@ class HomeScreenController extends GetxController
     }
     update();
   }
- _filerData(){
 
-
- }
-
-
+  filterData(int index) {
+    filterFinalList.clear();
+    selectedIndex.value = index;
+    CategoryData categoryData = categoryList[index];
+    List<ProductData> finalList = [];
+    finalList = productList
+        .where((element) => element.categoryName == categoryData.categoryName)
+        .toList();
+    filterFinalList.addAll(finalList);
+    change(filterFinalList, status: RxStatus.success());
+  }
 }

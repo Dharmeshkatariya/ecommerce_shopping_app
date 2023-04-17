@@ -61,7 +61,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                       childAspectRatio: 0.6,
                       mainAxisSpacing: 10,
                       crossAxisCount: 2,
-                      children: List.generate(controller.productList.length,
+                      children: List.generate(
+                          controller.filterFinalList.isEmpty
+                              ? controller.productList.length
+                              : controller.filterFinalList.length,
                           (index) => _gridItem(index))),
                 ),
               )
@@ -71,33 +74,65 @@ class HomeScreen extends GetView<HomeScreenController> {
         onLoading: const Center(
           child: CircularProgressIndicator(),
         ),
-        onEmpty: EmptyScreen(),
+        onEmpty: const EmptyScreen(),
       ),
     );
   }
 
   Widget _gridItem(int index) {
-    ProductData productData = controller.productList[index];
+    ProductData productData = controller.filterFinalList.isEmpty
+        ? controller.productList[index]
+        : controller.filterFinalList[index];
     return GestureDetector(
-      onTap: (){
-        Get.toNamed(NameRoutes.productDetailScreen,arguments: {
-          " productData " :   controller.productList[index]
-        });
+      onTap: () {
+        Get.toNamed(NameRoutes.productDetailScreen,
+            arguments: {"productData": productData});
       },
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _imageStack(productData),
-            _text(
-              text: productData.productName,
-              color: Colors.grey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _imageStack(productData),
+          _text(
+            text: productData.productName,
+            color: Colors.grey,
+          ),
+          _text(
+              text: " Rs ${productData.productPrice}",
+              fontWeight: FontWeight.bold),
+        ],
+      ),
+    );
+  }
+
+  Widget _horizontalListview(int index) {
+    CategoryData categoryData = controller.categoryList[index];
+    return GestureDetector(
+      onTap: () {
+        controller.filterData(index);
+      },
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(
+              color: index == controller.selectedIndex.value
+                  ? Colors.black
+                  : Colors.pink.shade100,
+              borderRadius: BorderRadius.circular(10),
             ),
-            _text(
-                text: " Rs ${productData.totalRateValue}",
-                fontWeight: FontWeight.bold),
-          ],
-        ),
+            child: Image.network(
+              "https://www.shutterstock.com/image-vector/vector-illustration-chair-on-white-260nw-1165935439.jpg",
+              height: 30,
+              width: 30,
+            ),
+          ),
+          Text(
+            categoryData.categoryName,
+            style: GoogleFontsStyle.poppins(
+                fontWeight: FontWeight.w600, fontSize: 14),
+          )
+        ],
       ),
     );
   }
@@ -141,34 +176,6 @@ class HomeScreen extends GetView<HomeScreenController> {
               ),
             ))
       ],
-    );
-  }
-
-  Widget _horizontalListview(int index) {
-    CategoryData categoryData = controller.categoryList[index];
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.pink.shade100,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.network(
-              "https://www.shutterstock.com/image-vector/vector-illustration-chair-on-white-260nw-1165935439.jpg",
-              height: 30,
-              width: 30,
-            ),
-          ),
-          Text(
-            categoryData.categoryName,
-            style: GoogleFontsStyle.poppins(
-                fontWeight: FontWeight.w600, fontSize: 14),
-          )
-        ],
-      ),
     );
   }
 }

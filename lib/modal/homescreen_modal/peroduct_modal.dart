@@ -7,6 +7,7 @@ class ProductData {
   late final String image;
   late final int totalReview;
   late final int totalRateValue;
+  final double productPrice = 50;
 
   ProductData.fromJson(Map<String, dynamic> json){
     id = json['id'];
