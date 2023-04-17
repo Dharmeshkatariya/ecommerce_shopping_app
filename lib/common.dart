@@ -9,14 +9,16 @@ class Common {
       onTap: onTap,
         child: Container(
 
+
+
       alignment: Alignment.center,
       decoration:  BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(8)),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Text(
         text,
         style: GoogleFonts.inter(
-            fontWeight: FontWeight.w400, fontSize: 18, color: Colors.white),
+            fontWeight: FontWeight.w400, fontSize: 17, color: Colors.white),
       ),
     ));
   }

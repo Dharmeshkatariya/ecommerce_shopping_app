@@ -6,6 +6,9 @@ class GoogleFontsStyle {
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
+    TextOverflow? overflow,
+    int? maxLines,
+    bool? softWrap,
   }) {
     return GoogleFonts.poppins(
       fontSize: fontSize,
@@ -37,6 +40,7 @@ class GoogleFontsStyle {
       color: color,
     );
   }
+
   static TextStyle inter({
     double? fontSize,
     FontWeight? fontWeight,

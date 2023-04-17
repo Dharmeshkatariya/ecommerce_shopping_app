@@ -3,6 +3,7 @@ import 'package:furniture_shoping/binding/loginscreen_binding.dart';
 import 'package:furniture_shoping/binding/signup_screen_binding.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/screen/dashboard_screen.dart';
+import 'package:furniture_shoping/screen/product_detail_screen.dart';
 import 'package:furniture_shoping/screen/signup_screen.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,10 @@ class PageRoutes {
       name: NameRoutes.dashBoardScreen,
       page: () => DashBoardScreen(),
       binding: DashboardScreenBinding(),
+    ),
+    GetPage(
+      name: NameRoutes.productDetailScreen,
+      page: () => ProductDetailScreen(),
     ),
   ];
 }

@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/controller/homescreen_controller.dart';
+import 'package:furniture_shoping/modal/homescreen_modal/category_modal.dart';
+import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
+import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/emptyscreen.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
+import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -31,44 +38,66 @@ class HomeScreen extends StatelessWidget {
               color: Colors.grey.shade600),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _horizontalListview(index);
-                  }),
-            ),
-            Expanded(
-              child: GridView.count(
-                  primary: false,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 0.6,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 2,
-                  children: List.generate(20, (index) => _gridItem(index))),
-            )
-          ],
+      body: controller.obx(
+        (state) => Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 95,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.categoryList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _horizontalListview(index);
+                    }),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: GridView.count(
+                      primary: false,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 0.6,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      children: List.generate(controller.productList.length,
+                          (index) => _gridItem(index))),
+                ),
+              )
+            ],
+          ),
         ),
+        onLoading: const Center(
+          child: CircularProgressIndicator(),
+        ),
+        onEmpty: EmptyScreen(),
       ),
     );
   }
 
   Widget _gridItem(int index) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _imageStack(),
-          _text(text: "virat lojhi", color: Colors.grey),
-          _text(text: "price", fontWeight: FontWeight.bold),
-        ],
+    ProductData productData = controller.productList[index];
+    return GestureDetector(
+      onTap: (){
+        Get.toNamed(NameRoutes.productDetailScreen,arguments: {
+          " productData " :   controller.productList[index]
+        });
+      },
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _imageStack(productData),
+            _text(
+              text: productData.productName,
+              color: Colors.grey,
+            ),
+            _text(
+                text: " Rs ${productData.totalRateValue}",
+                fontWeight: FontWeight.bold),
+          ],
+        ),
       ),
     );
   }
@@ -76,39 +105,48 @@ class HomeScreen extends StatelessWidget {
   Widget _text({required String text, FontWeight? fontWeight, Color? color}) {
     return Text(
       text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFontsStyle.poppins(
         color: color,
         fontWeight: FontWeight.bold,
+        softWrap: false,
       ),
     );
   }
 
-  Widget _imageStack() {
+  Widget _imageStack(ProductData productData) {
     return Stack(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.network(
             height: 210,
-            width: 200,
-            "https://i.pinimg.com/736x/58/f5/29/58f5295e76b6bd5dbe0cc0c55a98ce5a.jpg",
+            width: 210,
+            productData.image,
             fit: BoxFit.fill,
           ),
         ),
         Positioned(
-          bottom: 20,
-          right: 30,
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart),
-          ),
-        )
+            bottom: 20,
+            right: 10,
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                child: SvgPicture.asset("assets/icon/shopbeg.svg"),
+              ),
+            ))
       ],
     );
   }
 
   Widget _horizontalListview(int index) {
-    return Card(
+    CategoryData categoryData = controller.categoryList[index];
+    return Container(
       child: Column(
         children: [
           Container(
@@ -118,14 +156,14 @@ class HomeScreen extends StatelessWidget {
               color: Colors.pink.shade100,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Image.asset(
-              "assets/image/splash.png",
+            child: Image.network(
+              "https://www.shutterstock.com/image-vector/vector-illustration-chair-on-white-260nw-1165935439.jpg",
               height: 30,
               width: 30,
             ),
           ),
           Text(
-            "Popular",
+            categoryData.categoryName,
             style: GoogleFontsStyle.poppins(
                 fontWeight: FontWeight.w600, fontSize: 14),
           )
