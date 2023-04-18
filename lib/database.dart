@@ -14,11 +14,11 @@ import 'modal/dao/person_dao.dart';
 
 part 'database.g.dart'; // the generated code will be there
 
-@Database(version: 3, entities: [Person, Product, Cart])
+@Database(version: 4, entities: [Person, Product, Cart])
 abstract class AppDatabase extends FloorDatabase {
   PersonDao get personDao;
 
   ProductDao get productDao;
 
-  CartDao get cartDDao;
+  CartDao get cartDao;
 }

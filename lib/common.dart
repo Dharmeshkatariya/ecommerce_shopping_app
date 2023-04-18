@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'database.dart';
@@ -22,11 +23,9 @@ class Common {
 
   insertData(Product product) async {
     try {
-
       final productDao = database.productDao;
       var res = await productDao.insertProduct(product);
       print(res);
-      getAllData();
     } catch (e) {
       print(e);
     }
@@ -37,6 +36,19 @@ class Common {
     List<Product> res = await productDao.findAllProduct();
     print(res);
     return res;
+  }
+
+ getProductById(int id)async{
+    try{
+      final productDao = database.productDao;
+      var res = await productDao.findProductById(id);
+      print(res);
+      return res;
+
+    }catch(e){
+      print(e);
+
+    }
   }
 
   updateProduct(Product product) async {
@@ -55,20 +67,41 @@ class Common {
     }
   }
 
-  insertCard(Card card) async {
-    try {
-      final cardDao = database.cardDao;
+  deleteProduct(int productId) async {
+    try{
+      final productDao = database.productDao;
+      await productDao.deleteById(productId);
+      getAllData();
+    }catch(e){
+      print(e);
+    }
+  }
+  deleteCartItem(int cartId) async {
+    try{
+      final cartDao = database.cartDao;
+      await cartDao.deleteById(cartId);
+      getAllData();
+    }catch(e){
+      print(e);
+    }
+  }
 
-      var res = await cardDao.insertCart(card);
-      print(res);
+  insertCard(Cart cart) async {
+    try {
+      final cartDao = database.cartDao;
+      print('');
+      if (cartDao != null) {
+        var res = await cartDao.insertCart(cart);
+        print(res);
+      }
     } catch (e) {
       print(e);
     }
   }
 
-  Future<List<Card>> getAllCard() async {
-    final cardDao = database.cardDao;
-    List<Card> res = await cardDao.findAllCarts();
+  Future<List<Cart>> getAllCard() async {
+    final cartDao = database.cartDao;
+    List<Cart> res = await cartDao.findAllCarts();
     print(res);
     return res;
   }
@@ -144,4 +177,5 @@ class Common {
       ],
     );
   }
+
 }

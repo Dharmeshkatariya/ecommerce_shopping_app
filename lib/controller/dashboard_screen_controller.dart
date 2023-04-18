@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:furniture_shoping/screen/cart_screen.dart';
+import 'package:furniture_shoping/screen/favourite_screen.dart';
 import 'package:furniture_shoping/screen/homescreen.dart';
 import 'package:furniture_shoping/screen/notification_screen.dart';
 import 'package:furniture_shoping/screen/profile_screen.dart';
@@ -9,7 +9,7 @@ class DashBoardScreenController extends GetxController
     with StateMixin<List<Widget>> {
   List<Widget> mList = [
     HomeScreen(),
-    CartScreen(),
+    FavouriteScreen(),
     NotificationScreen(),
     ProfileScreen(),
   ];

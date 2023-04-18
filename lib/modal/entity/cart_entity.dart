@@ -12,5 +12,11 @@ class Cart {
   final String cartProductImage;
   final int cartProductOty;
 
-  Cart(this.id, this.cartProductName, this.cartProductPrice, this.cartProductImage, this.cartProductOty);
+  Cart(
+    this.id,
+    this.cartProductName,
+    this.cartProductPrice,
+    this.cartProductImage,
+    this.cartProductOty,
+  );
 }

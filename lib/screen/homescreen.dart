@@ -86,7 +86,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     return GestureDetector(
       onTap: () {
         Get.toNamed(NameRoutes.productDetailScreen,
-            arguments: {"productData": productData});
+            arguments: {"productData": productData,"index" : index});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

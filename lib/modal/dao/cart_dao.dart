@@ -11,6 +11,11 @@ abstract class CartDao {
   @Query('SELECT * FROM Cart WHERE id = :id')
   Stream<Cart?> findCartById(int id);
 
+  @Query('DELETE FROM Cart WHERE id = :id')
+  Future<void> deleteById(int id);
+
   @insert
   Future<void> insertCart(Cart cart);
+
+
 }

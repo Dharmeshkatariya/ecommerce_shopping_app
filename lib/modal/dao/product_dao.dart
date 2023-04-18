@@ -11,6 +11,9 @@ abstract class ProductDao {
   @Query('SELECT * FROM Product WHERE id = :id')
   Stream<Product?> findProductById(int id);
 
+  @Query('DELETE FROM Product WHERE id = :id')
+  Future<void> deleteById(int id);
+
   @insert
   Future<int> insertProduct(Product product);
 }

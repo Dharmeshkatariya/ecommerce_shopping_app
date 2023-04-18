@@ -11,6 +11,9 @@ abstract class PersonDao {
   @Query('SELECT * FROM Person WHERE id = :id')
   Stream<Person?> findPersonById(int id);
 
+  @Query('DELETE FROM Person WHERE id = :id')
+  Future<void> deleteById(int id);
+
   @insert
   Future<void> insertPerson(Person person);
 }

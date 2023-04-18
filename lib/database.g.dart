@@ -65,7 +65,7 @@ class _$AppDatabase extends AppDatabase {
 
   ProductDao? _productDaoInstance;
 
-  CartDao? _cartDDaoInstance;
+  CartDao? _cartDaoInstance;
 
   Future<sqflite.Database> open(
     String path,
@@ -73,7 +73,7 @@ class _$AppDatabase extends AppDatabase {
     Callback? callback,
   ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
-      version: 3,
+      version: 4,
       onConfigure: (database) async {
         await database.execute('PRAGMA foreign_keys = ON');
         await callback?.onConfigure?.call(database);
@@ -112,8 +112,8 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  CartDao get cartDDao {
-    return _cartDDaoInstance ??= _$CartDao(database, changeListener);
+  CartDao get cartDao {
+    return _cartDaoInstance ??= _$CartDao(database, changeListener);
   }
 }
 
@@ -152,6 +152,12 @@ class _$PersonDao extends PersonDao {
         arguments: [id],
         queryableName: 'Person',
         isView: false);
+  }
+
+  @override
+  Future<void> deleteById(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM Person WHERE id = ?1', arguments: [id]);
   }
 
   @override
@@ -211,6 +217,12 @@ class _$ProductDao extends ProductDao {
   }
 
   @override
+  Future<void> deleteById(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM Product WHERE id = ?1', arguments: [id]);
+  }
+
+  @override
   Future<int> insertProduct(Product product) {
     return _productInsertionAdapter.insertAndReturnId(
         product, OnConflictStrategy.abort);
@@ -265,6 +277,12 @@ class _$CartDao extends CartDao {
         arguments: [id],
         queryableName: 'Cart',
         isView: false);
+  }
+
+  @override
+  Future<void> deleteById(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM Cart WHERE id = ?1', arguments: [id]);
   }
 
   @override

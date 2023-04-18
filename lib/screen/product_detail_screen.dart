@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/product_detail_screen_controller.dart';
 import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
+import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -12,33 +13,32 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Obx(()=> SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _stackImage(),
-                  _text(
-                      text: controller.productData!.categoryName,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24),
-                  _qtyRow(),
-                  _reviewRow(),
-                  _text(
-                      text: controller.productData!.description,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: Colors.grey),
-                  _bottomRow()
-                ],
+        body: Obx(() => SafeArea(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _stackImage(),
+                      _text(
+                          text: controller.productData!.categoryName,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24),
+                      _qtyRow(),
+                      _reviewRow(),
+                      _text(
+                          text: controller.productData!.description,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: Colors.grey),
+                      _bottomRow()
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        ))
-    );
+            )));
   }
 
   Widget _qtyRow() {
@@ -49,21 +49,23 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
             fontWeight: FontWeight.w600,
             fontSize: 32),
         const Spacer(),
-        GestureDetector(onTap: () {
-          controller.updateQty(true);
-        }, child: const Icon(Icons.add)),
+        GestureDetector(
+            onTap: () {
+              controller.updateQty(true);
+            },
+            child: const Icon(Icons.add)),
         const SizedBox(
           width: 20,
         ),
-         Text("${controller.productQty.value}"),
+        Text("${controller.productQty.value}"),
         const SizedBox(
           width: 20,
         ),
         GestureDetector(
             onTap: () {
               controller.updateQty(false);
-
-            }, child: SvgPicture.asset("assets/icon/minus.svg")),
+            },
+            child: SvgPicture.asset("assets/icon/minus.svg")),
         const SizedBox(
           width: 20,
         ),
@@ -72,18 +74,23 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
   }
 
   Widget _reviewRow() {
-    return Row(
-      children: [
-        SvgPicture.asset("assets/icon/star.svg"),
-        const SizedBox(
-          width: 10,
-        ),
-        _text(text: "${controller.productData!.totalRateValue}"),
-        const SizedBox(
-          width: 10,
-        ),
-        _text(text: "(${controller.productData!.totalReview} Review)"),
-      ],
+    return GestureDetector(
+      onTap: (){
+        Get.toNamed(NameRoutes.ratingReviewScreen);
+      },
+      child: Row(
+        children: [
+          SvgPicture.asset("assets/icon/star.svg"),
+          const SizedBox(
+            width: 10,
+          ),
+          _text(text: "${controller.productData!.totalRateValue}"),
+          const SizedBox(
+            width: 10,
+          ),
+          _text(text: "(${controller.productData!.totalReview} Review)"),
+        ],
+      ),
     );
   }
 
@@ -123,7 +130,11 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Icon(Icons.chevron_left))),
+                child: GestureDetector(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: const Icon(Icons.chevron_left)))),
         Positioned(
             top: 100,
             left: 10,
@@ -145,18 +156,25 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
-            decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(12)),
-            child: Image.asset(
-              "assets/image/save.png",
-              color: Colors.white,
-            )),
-        Common.button(text: "Add to Cart", onTap: () {
-
-          controller.addToCart();
-        }, width: 240),
+        GestureDetector(
+          onTap: () {
+            controller.addToFavourite();
+          },
+          child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+              decoration: BoxDecoration(
+                  color: Colors.grey, borderRadius: BorderRadius.circular(12)),
+              child: Image.asset(
+                "assets/image/save.png",
+                color: Colors.white,
+              )),
+        ),
+        Common.button(
+            text: "Add to Cart",
+            onTap: () {
+              controller.addToCart();
+            },
+            width: 240),
       ],
     );
   }
