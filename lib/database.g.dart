@@ -73,7 +73,7 @@ class _$AppDatabase extends AppDatabase {
     Callback? callback,
   ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
-      version: 1,
+      version: 3,
       onConfigure: (database) async {
         await database.execute('PRAGMA foreign_keys = ON');
         await callback?.onConfigure?.call(database);
@@ -198,7 +198,7 @@ class _$ProductDao extends ProductDao {
 
   @override
   Stream<Product?> findProductById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM Person WHERE id = ?1',
+    return _queryAdapter.queryStream('SELECT * FROM Product WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Product(
             row['id'] as int,
             row['productName'] as String,
@@ -206,7 +206,7 @@ class _$ProductDao extends ProductDao {
             row['productPrice'] as double,
             row['productQty'] as int),
         arguments: [id],
-        queryableName: 'Person',
+        queryableName: 'Product',
         isView: false);
   }
 
@@ -243,8 +243,8 @@ class _$CartDao extends CartDao {
   final InsertionAdapter<Cart> _cartInsertionAdapter;
 
   @override
-  Future<List<Cart>> findAllPersons() async {
-    return _queryAdapter.queryList('SELECT * FROM Person',
+  Future<List<Cart>> findAllCarts() async {
+    return _queryAdapter.queryList('SELECT * FROM Cart',
         mapper: (Map<String, Object?> row) => Cart(
             row['id'] as int,
             row['cartProductName'] as String,
@@ -254,8 +254,8 @@ class _$CartDao extends CartDao {
   }
 
   @override
-  Stream<Cart?> findPersonById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM Person WHERE id = ?1',
+  Stream<Cart?> findCartById(int id) {
+    return _queryAdapter.queryStream('SELECT * FROM Cart WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Cart(
             row['id'] as int,
             row['cartProductName'] as String,
@@ -263,12 +263,12 @@ class _$CartDao extends CartDao {
             row['cartProductImage'] as String,
             row['cartProductOty'] as int),
         arguments: [id],
-        queryableName: 'Person',
+        queryableName: 'Cart',
         isView: false);
   }
 
   @override
-  Future<void> insertPerson(Cart cart) async {
+  Future<void> insertCart(Cart cart) async {
     await _cartInsertionAdapter.insert(cart, OnConflictStrategy.abort);
   }
 }

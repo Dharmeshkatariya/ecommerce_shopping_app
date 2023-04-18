@@ -9,6 +9,7 @@ import 'package:furniture_shoping/screen/signup_screen.dart';
 import 'package:get/get.dart';
 
 import '../screen/loginscreen.dart';
+import '../screen/mycartlist_screen.dart';
 
 class PageRoutes {
   static final pages = [
@@ -30,6 +31,10 @@ class PageRoutes {
       name: NameRoutes.productDetailScreen,
       page: () => ProductDetailScreen(),
       binding: ProductDetailScreenBinding(),
+    ),
+    GetPage(
+      name: NameRoutes.myCartScreen,
+      page: () =>MyCartListScreen(),
     ),
   ];
 }

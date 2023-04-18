@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _login() async {
+    await Common().initDatabase();
     var shareP = await SharedPreferences.getInstance();
     bool isLogin = shareP.getBool("login") ?? false;
     Timer(const Duration(seconds: 3), () {

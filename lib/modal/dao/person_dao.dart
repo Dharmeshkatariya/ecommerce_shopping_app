@@ -1,7 +1,7 @@
 // dao/person_dao.dart
 
 import 'package:floor/floor.dart';
-import 'package:furniture_shoping/modal/person_entity.dart';
+import 'package:furniture_shoping/modal/entity/person_entity.dart';
 
 @dao
 abstract class PersonDao {
