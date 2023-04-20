@@ -6,4 +6,7 @@ class NameRoutes {
    static const String myCartScreen = "/myCartScreen";
    static const String favouriteScreen = "/favouriteScreen";
    static const String ratingReviewScreen = "/ratingReviewScreen";
+   static const String checkoutScreen = "/checkoutScreen";
+   static const String submitOrderScreen = "/submitOrderScreen";
+
 }

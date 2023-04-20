@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
-import 'package:furniture_shoping/controller/favoutire_controller.dart';
 import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
@@ -27,6 +25,7 @@ class ProductDetailScreenController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     getData();
+
     super.onInit();
   }
 
@@ -52,6 +51,14 @@ class ProductDetailScreenController extends GetxController {
     }
   }
 
+  getFavData() async {
+    var data = await Common().getProductById(productData!.id);
+    print(data);
+    if (data != null) {
+      isDisable.value = true;
+    }
+  }
+
   addToFavourite() async {
     try {
       var data = await Common().getProductById(productData!.id);
@@ -59,10 +66,12 @@ class ProductDetailScreenController extends GetxController {
         isDisable.value = true;
         Common.commonSnabar("Favourite", "your item is already in fav");
       } else {
+        isDisable.value = true;
         Product product = Product(productData!.id, productData!.productName,
             productData!.image, productData!.productPrice, productQty.value);
         await Common().insertData(product);
         Common.commonSnabar("Favourite", "your item is added in fav");
+
         Get.toNamed(NameRoutes.favouriteScreen);
       }
     } catch (e) {

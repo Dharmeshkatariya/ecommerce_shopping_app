@@ -12,36 +12,35 @@ class FavouriteScreen extends GetView<FavouriteController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getProductData();
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: const Text(
-            "Favoutires",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text(
+          "Favoutires",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
         ),
-        body:  Obx(
-
-              () => Container(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Column(children: [
-              Expanded(
-                child: ListView.separated(
-                  itemCount: controller.productList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _favList(index);
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-                ),
+      ),
+      body: Obx(
+        () => Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Column(children: [
+            Expanded(
+              child: ListView.separated(
+                itemCount: controller.productList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _favList(index);
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
               ),
-              Common.button(text: "Add all to my cart", onTap: () {}),
-            ]),
-          ),
+            ),
+            Common.button(text: "Add all to my cart", onTap: () {}),
+          ]),
         ),
+      ),
     );
   }
 
@@ -92,23 +91,19 @@ class FavouriteScreen extends GetView<FavouriteController> {
                 ),
                 Row(
                   children: [
-                    Spacer(),
+                    const   Spacer(),
+
+                    const Icon(Icons.shopping_cart),
                     Obx(
                       () => Checkbox(
                         checkColor: Colors.white,
-                        value: controller.isChecked.value,
-                        shape: CircleBorder(),
+                        value:    controller.isChecked.value,
+                        shape: const CircleBorder(),
                         onChanged: (bool? value) {
-                          controller.isChecked.value = value!;
+                       controller.selectedIndex(index,value);
                         },
                       ),
                     )
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Spacer(),
-                    Icon(Icons.shopping_cart),
                   ],
                 ),
               ],

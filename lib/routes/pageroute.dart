@@ -6,10 +6,12 @@ import 'package:furniture_shoping/binding/productdetail_binding.dart';
 import 'package:furniture_shoping/binding/rating_review_binding.dart';
 import 'package:furniture_shoping/binding/signup_screen_binding.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/screen/checkout_screen.dart';
 import 'package:furniture_shoping/screen/dashboard_screen.dart';
 import 'package:furniture_shoping/screen/product_detail_screen.dart';
 import 'package:furniture_shoping/screen/rating_review_screen.dart';
 import 'package:furniture_shoping/screen/signup_screen.dart';
+import 'package:furniture_shoping/screen/submitorder.dart';
 import 'package:get/get.dart';
 
 import '../screen/favourite_screen.dart';
@@ -51,6 +53,14 @@ class PageRoutes {
       name: NameRoutes.ratingReviewScreen,
       page: () => RatingReviewScreen(),
       binding: RatingReviewBinding(),
+    ),
+    GetPage(
+      name: NameRoutes.checkoutScreen,
+      page: () => CheckOutScreen(),
+    ),
+    GetPage(
+      name: NameRoutes.submitOrderScreen,
+      page: () => SubmitOrderScreen(),
     ),
   ];
 }

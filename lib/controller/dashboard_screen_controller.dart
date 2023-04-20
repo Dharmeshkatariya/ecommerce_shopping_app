@@ -5,8 +5,7 @@ import 'package:furniture_shoping/screen/notification_screen.dart';
 import 'package:furniture_shoping/screen/profile_screen.dart';
 import 'package:get/get.dart';
 
-class DashBoardScreenController extends GetxController
-    with StateMixin<List<Widget>> {
+class DashBoardScreenController extends GetxController with StateMixin<List<Widget>> {
   List<Widget> mList = [
     HomeScreen(),
     FavouriteScreen(),

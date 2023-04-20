@@ -12,6 +12,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getFavData();
     return Scaffold(
         body: Obx(() => SafeArea(
               child: SingleChildScrollView(

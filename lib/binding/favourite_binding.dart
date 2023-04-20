@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class FavouriteBinding extends Bindings{
   @override
   void dependencies() {
- Get.put(FavouriteController());
+ Get.put<FavouriteController>(FavouriteController());
     // TODO: implement dependencies
   }
 

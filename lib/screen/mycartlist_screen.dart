@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/mycartscreen_controller.dart';
+import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:get/get.dart';
 
 import '../modal/entity/cart_entity.dart';
@@ -22,7 +23,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -49,12 +50,14 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("Total"),
-                    Text("rs"),
+                  children:  [
+                    const Text("Total"),
+                    Text(controller.total.toString()),
                   ],
                 ),
-                Common.button(text: "Check Out")
+                Common.button(text: "Check Out",onTap:(){
+                  Get.toNamed(NameRoutes.checkoutScreen);
+                } )
               ],
             ),
           )),
@@ -95,7 +98,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                     GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           controller.deleteCartItem(index);
                         },
                         child: SvgPicture.asset("assets/icon/close.svg")),
@@ -112,7 +115,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        controller.updateQty(true);
+                        controller.updateQty(true,cart.cartProductOty);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -133,7 +136,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        controller.updateQty(false);
+                        controller.updateQty(false,cart.cartProductOty);
                       },
                       child: Container(
                         decoration: BoxDecoration(

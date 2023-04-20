@@ -6,8 +6,7 @@ import '../modal/entity/cart_entity.dart';
 import '../modal/entity/product_entity.dart';
 import '../routes/nameroutes.dart';
 
-class FavouriteController extends GetxController
-   {
+class FavouriteController extends GetxController {
   RxList<Product> productList = <Product>[].obs;
   RxBool isChecked = false.obs;
 
@@ -20,19 +19,16 @@ class FavouriteController extends GetxController
 
   getProductData() async {
     productList.clear();
+
     productList.value = await Common().getAllData();
     update();
-
   }
 
   deleteProduct(int index) async {
     Common().deleteProduct(productList[index].id);
     productList.value = await Common().getAllData();
     update();
-
   }
-
-
 
   addToCartAllProduct(int index) async {
     try {
@@ -49,5 +45,14 @@ class FavouriteController extends GetxController
     } catch (e) {
       print(e);
     }
+  }
+
+  selectedIndex(int index,value) {
+    for (int i = 0; i < productList.length; i++) {
+      if (i == index) {
+        isChecked.value = value;
+      }
+    }
+    update();
   }
 }
