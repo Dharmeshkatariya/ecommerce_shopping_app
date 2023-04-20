@@ -163,7 +163,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
           child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(12)),
+                  color: controller.isDisable.value? Colors.grey  : Colors.green , borderRadius: BorderRadius.circular(12)),
               child: Image.asset(
                 "assets/image/save.png",
                 color: Colors.white,

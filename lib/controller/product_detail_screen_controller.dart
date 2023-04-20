@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 
 class ProductDetailScreenController extends GetxController {
   RxInt productQty = 1.obs;
-  late int selectedProductIndex   ;
+  RxBool isDisable = false.obs;
+
+  late int selectedProductIndex;
 
   updateQty(bool isAdd) {
     if (isAdd) {
@@ -37,7 +39,6 @@ class ProductDetailScreenController extends GetxController {
     }
   }
 
-
   addToCart() async {
     try {
       Cart cart = Cart(productData!.id, productData!.productName,
@@ -53,19 +54,17 @@ class ProductDetailScreenController extends GetxController {
 
   addToFavourite() async {
     try {
-  /*    FavouriteController favouriteController = Get.find();
-      // var id = favouriteController.productList[selectedProductIndex].id;
-      if (id != productData!.id) {
-
-      }*/
       var data = await Common().getProductById(productData!.id);
-      print(data);
-
-
-      Product product = Product(productData!.id, productData!.productName,
-          productData!.image, productData!.productPrice, productQty.value);
-      await Common().insertData(product);
-      Get.toNamed(NameRoutes.favouriteScreen);
+      if (data != null) {
+        isDisable.value = true;
+        Common.commonSnabar("Favourite", "your item is already in fav");
+      } else {
+        Product product = Product(productData!.id, productData!.productName,
+            productData!.image, productData!.productPrice, productQty.value);
+        await Common().insertData(product);
+        Common.commonSnabar("Favourite", "your item is added in fav");
+        Get.toNamed(NameRoutes.favouriteScreen);
+      }
     } catch (e) {
       print(e);
     }

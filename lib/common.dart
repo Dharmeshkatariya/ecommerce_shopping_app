@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'database.dart';
 
@@ -38,16 +40,14 @@ class Common {
     return res;
   }
 
- getProductById(int id)async{
-    try{
+  Future<Product?> getProductById(int id) async {
+    try {
       final productDao = database.productDao;
       var res = await productDao.findProductById(id);
-      print(res);
+
       return res;
-
-    }catch(e){
+    } catch (e) {
       print(e);
-
     }
   }
 
@@ -68,20 +68,21 @@ class Common {
   }
 
   deleteProduct(int productId) async {
-    try{
+    try {
       final productDao = database.productDao;
       await productDao.deleteById(productId);
       getAllData();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
+
   deleteCartItem(int cartId) async {
-    try{
+    try {
       final cartDao = database.cartDao;
       await cartDao.deleteById(cartId);
       getAllData();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
@@ -178,4 +179,36 @@ class Common {
     );
   }
 
+  static dialogBox(String title, String msg) {
+    return Get.dialog(Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          color: Colors.white,
+          height: 200,
+          width: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(msg),
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+
+  static commonSnabar(String title, String msg) {
+    return Get.snackbar(title, msg,
+        snackPosition: SnackPosition.BOTTOM,
+        overlayColor: Colors.red,
+        backgroundColor: Colors.red.shade100,
+       );
+  }
 }

@@ -22,9 +22,11 @@ class FavouriteScreen extends GetView<FavouriteController> {
                 fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
           ),
         ),
-        body: Obx(
-          () => Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        body:  Obx(
+
+              () => Container(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(children: [
               Expanded(
                 child: ListView.separated(
@@ -33,15 +35,14 @@ class FavouriteScreen extends GetView<FavouriteController> {
                     return _favList(index);
                   },
                   separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(),
+                  const Divider(),
                 ),
               ),
-              Common.button(text: "Add all to my cart", onTap: () {
-
-              }),
+              Common.button(text: "Add all to my cart", onTap: () {}),
             ]),
           ),
-        ));
+        ),
+    );
   }
 
   Widget _favList(int index) {
@@ -75,7 +76,6 @@ class FavouriteScreen extends GetView<FavouriteController> {
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                       softWrap: true,
                     ),
-
                     GestureDetector(
                         onTap: () {
                           controller.deleteProduct(index);
@@ -83,24 +83,32 @@ class FavouriteScreen extends GetView<FavouriteController> {
                         child: SvgPicture.asset("assets/icon/close.svg")),
                   ],
                 ),
-                // Checkbox(
-                //
-                //     value: controller.checkBoxValue.value,
-                //     onChanged: (value) {
-                //
-                //       value = controller.checkBoxValue.value;
-                //     }),
                 const SizedBox(
                   height: 8,
                 ),
                 Text(product.productPrice.toString()),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
                   children: [
                     Spacer(),
-                    const Icon(Icons.shopping_cart),
+                    Obx(
+                      () => Checkbox(
+                        checkColor: Colors.white,
+                        value: controller.isChecked.value,
+                        shape: CircleBorder(),
+                        onChanged: (bool? value) {
+                          controller.isChecked.value = value!;
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: const [
+                    Spacer(),
+                    Icon(Icons.shopping_cart),
                   ],
                 ),
               ],

@@ -9,7 +9,7 @@ abstract class ProductDao {
   Future<List<Product>> findAllProduct();
 
   @Query('SELECT * FROM Product WHERE id = :id')
-  Stream<Product?> findProductById(int id);
+  Future<Product?> findProductById(int id);
 
   @Query('DELETE FROM Product WHERE id = :id')
   Future<void> deleteById(int id);

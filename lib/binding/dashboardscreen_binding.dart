@@ -6,13 +6,17 @@ import 'package:furniture_shoping/controller/profilescreen_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardScreenBinding extends Bindings{
+
+
   @override
   void dependencies() {
-     Get.lazyPut<DashBoardScreenController>(() => DashBoardScreenController());
-     Get.lazyPut<NotificationScreenController>(() => NotificationScreenController());
-     Get.lazyPut<ProfileScreenController>(() => ProfileScreenController());
-     Get.lazyPut<HomeScreenController>(() => HomeScreenController());
+
      Get.lazyPut<FavouriteController>(() => FavouriteController());
+     Get.lazyPut<DashBoardScreenController>(() => DashBoardScreenController());
+     Get.lazyPut<HomeScreenController>(() => HomeScreenController());
+     Get.lazyPut<ProfileScreenController>(() => ProfileScreenController());
+     Get.lazyPut<NotificationScreenController>(() => NotificationScreenController());
+
     // TODO: implement dependencies
   }
 

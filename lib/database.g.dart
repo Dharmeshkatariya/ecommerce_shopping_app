@@ -170,7 +170,7 @@ class _$ProductDao extends ProductDao {
   _$ProductDao(
     this.database,
     this.changeListener,
-  )   : _queryAdapter = QueryAdapter(database, changeListener),
+  )   : _queryAdapter = QueryAdapter(database),
         _productInsertionAdapter = InsertionAdapter(
             database,
             'Product',
@@ -180,8 +180,7 @@ class _$ProductDao extends ProductDao {
                   'productImage': item.productImage,
                   'productPrice': item.productPrice,
                   'productQty': item.productQty
-                },
-            changeListener);
+                });
 
   final sqflite.DatabaseExecutor database;
 
@@ -203,17 +202,15 @@ class _$ProductDao extends ProductDao {
   }
 
   @override
-  Stream<Product?> findProductById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM Product WHERE id = ?1',
+  Future<Product?> findProductById(int id) async {
+    return _queryAdapter.query('SELECT * FROM Product WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Product(
             row['id'] as int,
             row['productName'] as String,
             row['productImage'] as String,
             row['productPrice'] as double,
             row['productQty'] as int),
-        arguments: [id],
-        queryableName: 'Product',
-        isView: false);
+        arguments: [id]);
   }
 
   @override
