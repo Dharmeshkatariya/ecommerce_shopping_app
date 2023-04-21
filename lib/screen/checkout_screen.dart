@@ -61,7 +61,7 @@ class CheckOutScreen extends StatelessWidget {
             Common.button(
                 text: "Submit order",
                 onTap: () {
-                  Get.toNamed(NameRoutes.submitOrderScreen);
+                  Get.toNamed(NameRoutes.succeessOrderScreen);
                 }),
           ],
         ),

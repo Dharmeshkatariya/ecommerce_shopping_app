@@ -11,7 +11,7 @@ import 'package:furniture_shoping/screen/dashboard_screen.dart';
 import 'package:furniture_shoping/screen/product_detail_screen.dart';
 import 'package:furniture_shoping/screen/rating_review_screen.dart';
 import 'package:furniture_shoping/screen/signup_screen.dart';
-import 'package:furniture_shoping/screen/submitorder.dart';
+import 'package:furniture_shoping/screen/success_order_screen.dart';
 import 'package:get/get.dart';
 
 import '../screen/favourite_screen.dart';
@@ -59,8 +59,8 @@ class PageRoutes {
       page: () => CheckOutScreen(),
     ),
     GetPage(
-      name: NameRoutes.submitOrderScreen,
-      page: () => SubmitOrderScreen(),
+      name: NameRoutes.succeessOrderScreen,
+      page: () => SuccessOrderScreen(),
     ),
   ];
 }
