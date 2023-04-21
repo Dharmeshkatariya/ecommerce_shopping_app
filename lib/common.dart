@@ -94,6 +94,7 @@ class Common {
       if (cartDao != null) {
         var res = await cartDao.insertCart(cart);
         print(res);
+        getAllCard();
       }
     } catch (e) {
       print(e);

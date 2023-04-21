@@ -6,53 +6,74 @@ import '../modal/entity/cart_entity.dart';
 import '../modal/entity/product_entity.dart';
 import '../routes/nameroutes.dart';
 
-class FavouriteController extends GetxController {
-  RxList<Product> productList = <Product>[].obs;
-  RxBool isChecked = false.obs;
+class FavouriteController extends GetxController
+    with StateMixin<List<Product>> {
+  List<Product> productList = <Product>[];
+  List<int> itemList = [];
 
   @override
   void onInit() {
     // TODO: implement onInit
+    change(productList, status: RxStatus.loading());
     getProductData();
     super.onInit();
   }
 
   getProductData() async {
     productList.clear();
-
-    productList.value = await Common().getAllData();
-    update();
+    itemList.clear();
+    productList = await Common().getAllData();
+    change(productList, status: RxStatus.success());
   }
 
   deleteProduct(int index) async {
     Common().deleteProduct(productList[index].id);
-    productList.value = await Common().getAllData();
+    productList.removeAt(index);
+    print(productList);
+
     update();
   }
 
-  addToCartAllProduct(int index) async {
+  // allDeleteProduct(int index) async {
+  //   Common().deleteProduct(productList[index].id);
+  //   productList = await Common().getAllData();
+  //   // productList.removeAt(index);
+  //   update();
+  // }
+
+  addToCartAllProduct() async {
     try {
-      Cart cart = Cart(
-          productList[index].id,
-          productList[index].productName,
-          productList[index].productPrice,
-          productList[index].productImage,
-          productList[index].productQty);
-      await Common().insertCard(cart);
+      for (int i = 0; i < itemList.length; i++) {
+        Cart cart = Cart(
+            productList[itemList[i]].id,
+            productList[itemList[i]].productName,
+            productList[itemList[i]].productPrice,
+            productList[itemList[i]].productImage,
+            productList[itemList[i]].productQty);
+        await Common().insertCard(cart);
+        deleteProduct(itemList[i]);
+        print(productList.length);
+      }
+
+      print(productList);
+      itemList.clear();
+
+      change(productList, status: RxStatus.success());
 
       Get.toNamed(NameRoutes.myCartScreen);
-      print(cart);
     } catch (e) {
       print(e);
     }
   }
 
-  selectedIndex(int index,value) {
+  selectedIndex(int index, value) {
+
     for (int i = 0; i < productList.length; i++) {
       if (i == index) {
-        isChecked.value = value;
+        productList[index].isSelect = value;
+        itemList.add(index);
       }
     }
-    update();
+    change(productList, status: RxStatus.success());
   }
 }

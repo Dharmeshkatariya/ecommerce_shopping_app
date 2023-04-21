@@ -44,7 +44,11 @@ class ProductDetailScreenController extends GetxController {
           productData!.productPrice, productData!.image, productQty.value);
       await Common().insertCard(cart);
 
-      Get.toNamed(NameRoutes.myCartScreen);
+      Get.toNamed(NameRoutes.myCartScreen,arguments: {
+        "productQty":productQty
+
+      }
+      );
       print(cart);
     } catch (e) {
       print(e);
@@ -68,7 +72,7 @@ class ProductDetailScreenController extends GetxController {
       } else {
         isDisable.value = true;
         Product product = Product(productData!.id, productData!.productName,
-            productData!.image, productData!.productPrice, productQty.value);
+            productData!.image, productData!.productPrice, productQty.value,false);
         await Common().insertData(product);
         Common.commonSnabar("Favourite", "your item is added in fav");
 

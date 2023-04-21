@@ -7,12 +7,13 @@ class MYCartScreenController extends GetxController {
   RxList<Cart> cartList = <Cart>[].obs;
   RxDouble total = 0.0.obs;
 
+
   updateQty(bool isAdd, int productQty) {
     if (isAdd) {
-      productQty++;
+   productQty++;
     } else {
       if (productQty > 1) {
-        productQty--;
+       productQty--;
       }
     }
     update();

@@ -8,5 +8,7 @@ class NameRoutes {
    static const String ratingReviewScreen = "/ratingReviewScreen";
    static const String checkoutScreen = "/checkoutScreen";
    static const String succeessOrderScreen = "/succeessOrderScreen";
+   static const String profileSettingScreen = "/profileSettingScreen";
+   static const String paymentMethodScreen = "/paymentMethodScreen";
 
 }

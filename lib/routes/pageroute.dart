@@ -1,4 +1,5 @@
 import 'package:furniture_shoping/binding/cart_screen_binding.dart';
+import 'package:furniture_shoping/binding/checkoutscreen_binding.dart';
 import 'package:furniture_shoping/binding/dashboardscreen_binding.dart';
 import 'package:furniture_shoping/binding/favourite_binding.dart';
 import 'package:furniture_shoping/binding/loginscreen_binding.dart';
@@ -9,14 +10,16 @@ import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/screen/checkout_screen.dart';
 import 'package:furniture_shoping/screen/dashboard_screen.dart';
 import 'package:furniture_shoping/screen/product_detail_screen.dart';
+import 'package:furniture_shoping/screen/setting/profile_setting_page.dart';
 import 'package:furniture_shoping/screen/rating_review_screen.dart';
-import 'package:furniture_shoping/screen/signup_screen.dart';
+import 'package:furniture_shoping/screen/auth/signup_screen.dart';
 import 'package:furniture_shoping/screen/success_order_screen.dart';
 import 'package:get/get.dart';
 
 import '../screen/favourite_screen.dart';
-import '../screen/loginscreen.dart';
+import '../screen/auth/loginscreen.dart';
 import '../screen/mycartlist_screen.dart';
+import '../screen/setting/payment_method_screen.dart';
 
 class PageRoutes {
   static final pages = [
@@ -57,10 +60,19 @@ class PageRoutes {
     GetPage(
       name: NameRoutes.checkoutScreen,
       page: () => CheckOutScreen(),
+      binding: CheckOutScreenBinding(),
     ),
     GetPage(
       name: NameRoutes.succeessOrderScreen,
       page: () => SuccessOrderScreen(),
+    ),
+    GetPage(
+      name: NameRoutes.profileSettingScreen,
+      page: () => ProfileSettingScreen(),
+    ),
+    GetPage(
+      name: NameRoutes.paymentMethodScreen,
+      page: () => PaymentMethodScreen(),
     ),
   ];
 }

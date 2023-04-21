@@ -5,7 +5,7 @@ import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
-import '../controller/loginscreen_controller.dart';
+import '../../controller/loginscreen_controller.dart';
 
 class LogInScreen extends GetView<LogInScreenController> {
   const LogInScreen({Key? key}) : super(key: key);

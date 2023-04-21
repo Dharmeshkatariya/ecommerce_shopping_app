@@ -25,7 +25,9 @@ class HomeScreen extends GetView<HomeScreenController> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(NameRoutes.myCartScreen);
+            },
             icon: const Icon(Icons.add_shopping_cart, color: Colors.grey),
           )
         ],

@@ -10,13 +10,9 @@ class Product {
   final String productName;
   final String productImage;
   final double productPrice;
- final  int productQty;
+  final int productQty;
+   bool isSelect;
 
-  Product(
-    this.id,
-    this.productName,
-    this.productImage,
-    this.productPrice,
-      this.productQty
-  );
+  Product(this.id, this.productName, this.productImage, this.productPrice,
+      this.productQty, this.isSelect);
 }

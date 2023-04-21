@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
+import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
+import 'package:get/get.dart';
 
 class SuccessOrderScreen extends StatelessWidget {
   const SuccessOrderScreen({Key? key}) : super(key: key);
@@ -29,8 +31,12 @@ class SuccessOrderScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Common.button(text: "Track your orders"),
-              Common.button(text: "Back to home"),
+              Common.button(text: "Track your orders",onTap: (){
+
+              }),
+              Common.button(text: "Back to home",onTap: (){
+                Get.toNamed(NameRoutes.dashBoardScreen);
+              }),
             ],
           ),
         ),

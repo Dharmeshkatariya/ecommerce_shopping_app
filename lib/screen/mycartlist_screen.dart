@@ -56,7 +56,10 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                   ],
                 ),
                 Common.button(text: "Check Out",onTap:(){
-                  Get.toNamed(NameRoutes.checkoutScreen);
+
+                  Get.toNamed(NameRoutes.checkoutScreen,arguments: {
+                    "total":controller.total
+                  });
                 } )
               ],
             ),
@@ -128,7 +131,8 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                       width: 20,
                     ),
                     Text(
-                      cart.cartProductOty.toString(),
+
+                      "${cart.cartProductOty}",
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(

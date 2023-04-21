@@ -12,6 +12,7 @@ class FavouriteScreen extends GetView<FavouriteController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.itemList.clear();
     controller.getProductData();
     return Scaffold(
       appBar: AppBar(
@@ -23,8 +24,8 @@ class FavouriteScreen extends GetView<FavouriteController> {
               fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
         ),
       ),
-      body: Obx(
-        () => Container(
+      body: controller.obx(
+        (state) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(children: [
             Expanded(
@@ -37,7 +38,10 @@ class FavouriteScreen extends GetView<FavouriteController> {
                     const Divider(),
               ),
             ),
-            Common.button(text: "Add all to my cart", onTap: () {}),
+            Common.button(text: "Add all to my cart", onTap: () {
+
+              controller.addToCartAllProduct();
+            }),
           ]),
         ),
       ),
@@ -91,18 +95,14 @@ class FavouriteScreen extends GetView<FavouriteController> {
                 ),
                 Row(
                   children: [
-                    const   Spacer(),
-
+                    const Spacer(),
                     const Icon(Icons.shopping_cart),
-                    Obx(
-                      () => Checkbox(
-                        checkColor: Colors.white,
-                        value:    controller.isChecked.value,
-                        shape: const CircleBorder(),
-                        onChanged: (bool? value) {
-                       controller.selectedIndex(index,value);
-                        },
-                      ),
+                    Checkbox(
+                      checkColor: Colors.white,
+                      value: product.isSelect,
+                      onChanged: (bool? value) {
+                        controller.selectedIndex(index, value);
+                      },
                     )
                   ],
                 ),

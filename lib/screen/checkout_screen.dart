@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
+import 'package:furniture_shoping/controller/checkoutscreen_controller.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
-class CheckOutScreen extends StatelessWidget {
+class CheckOutScreen extends GetView<CheckOutScreenController> {
   const CheckOutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    controller.getData();
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -42,15 +44,15 @@ class CheckOutScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: Column(
                   children: [
-                    _textRow(ordername: "Order", price: "20"),
+                    _textRow(ordername: "Order", price: "${controller.total.value}"),
                     const SizedBox(
                       height: 10,
                     ),
-                    _textRow(ordername: "delivery", price: "20"),
+                    _textRow(ordername: "delivery", price: "5"),
                     const SizedBox(
                       height: 10,
                     ),
-                    _textRow(ordername: "total", price: "20"),
+                    _textRow(ordername: "total", price: "${controller.totalPrice.value}"),
                     const SizedBox(
                       height: 10,
                     ),

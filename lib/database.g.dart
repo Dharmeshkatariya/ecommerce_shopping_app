@@ -91,7 +91,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Person` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY (`id`))');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Product` (`id` INTEGER NOT NULL, `productName` TEXT NOT NULL, `productImage` TEXT NOT NULL, `productPrice` REAL NOT NULL, `productQty` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Product` (`id` INTEGER NOT NULL, `productName` TEXT NOT NULL, `productImage` TEXT NOT NULL, `productPrice` REAL NOT NULL, `productQty` INTEGER NOT NULL, `isSelect` INTEGER NOT NULL, PRIMARY KEY (`id`))');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Cart` (`id` INTEGER NOT NULL, `cartProductName` TEXT NOT NULL, `cartProductPrice` REAL NOT NULL, `cartProductImage` TEXT NOT NULL, `cartProductOty` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
@@ -179,7 +179,8 @@ class _$ProductDao extends ProductDao {
                   'productName': item.productName,
                   'productImage': item.productImage,
                   'productPrice': item.productPrice,
-                  'productQty': item.productQty
+                  'productQty': item.productQty,
+                  'isSelect': item.isSelect ? 1 : 0
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -198,7 +199,8 @@ class _$ProductDao extends ProductDao {
             row['productName'] as String,
             row['productImage'] as String,
             row['productPrice'] as double,
-            row['productQty'] as int));
+            row['productQty'] as int,
+            (row['isSelect'] as int) != 0));
   }
 
   @override
@@ -209,7 +211,8 @@ class _$ProductDao extends ProductDao {
             row['productName'] as String,
             row['productImage'] as String,
             row['productPrice'] as double,
-            row['productQty'] as int),
+            row['productQty'] as int,
+            (row['isSelect'] as int) != 0),
         arguments: [id]);
   }
 
