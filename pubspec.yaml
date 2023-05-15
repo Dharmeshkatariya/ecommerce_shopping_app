@@ -45,6 +45,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   image_picker: ^0.8.7+3
   dropdown_button2: ^2.1.2
+  whatsapp_unilink: ^2.1.0
+  url_launcher: ^6.1.11
 
 
 dev_dependencies:

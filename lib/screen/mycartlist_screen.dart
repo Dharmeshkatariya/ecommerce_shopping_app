@@ -15,6 +15,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
@@ -56,9 +57,10 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                   ],
                 ),
                 Common.button(text: "Check Out",onTap:(){
-
                   Get.toNamed(NameRoutes.checkoutScreen,arguments: {
-                    "total":controller.total
+                    "total":controller.total,
+
+
                   });
                 } )
               ],

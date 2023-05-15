@@ -32,6 +32,7 @@ class SuccessOrderScreen extends StatelessWidget {
                 ),
               ),
               Common.button(text: "Track your orders",onTap: (){
+                Get.toNamed(NameRoutes.myOrderScreen);
 
               }),
               Common.button(text: "Back to home",onTap: (){

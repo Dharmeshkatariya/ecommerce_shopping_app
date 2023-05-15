@@ -32,10 +32,14 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _commonRow("Shipping address"),
-            _commonRow("Payment"),
+            _commonRow(
+                text: "Shipping address",
+                onPressed: () {
+                  Get.toNamed(NameRoutes.shippingAddressScreen);
+                }),
+            _commonRow(text: "Payment "),
             commonCard(text: "*******5252", svg: "assets/icon/mastercard.svg"),
-            _commonRow("Delivery method"),
+            _commonRow(text: "Delivery method "),
             commonCard(text: "2 days", svg: "assets/icon/dhl.svg"),
             Card(
               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -44,7 +48,8 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: Column(
                   children: [
-                    _textRow(ordername: "Order", price: "${controller.total.value}"),
+                    _textRow(
+                        ordername: "Order", price: "${controller.total.value}"),
                     const SizedBox(
                       height: 10,
                     ),
@@ -52,7 +57,9 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    _textRow(ordername: "total", price: "${controller.totalPrice.value}"),
+                    _textRow(
+                        ordername: "total",
+                        price: "${controller.totalPrice.value}"),
                     const SizedBox(
                       height: 10,
                     ),
@@ -63,7 +70,8 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
             Common.button(
                 text: "Submit order",
                 onTap: () {
-                  Get.toNamed(NameRoutes.succeessOrderScreen);
+                  controller.sendlaunchWhatsAppUri();
+
                 }),
           ],
         ),
@@ -101,7 +109,7 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
     );
   }
 
-  Widget _commonRow(String text) {
+  Widget _commonRow({required String text, VoidCallback? onPressed}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -110,7 +118,10 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
           style: GoogleFontsStyle.poppins(
               fontWeight: FontWeight.w600, fontSize: 18, color: Colors.grey),
         ),
-        const Icon(Icons.edit),
+        IconButton(
+          onPressed: onPressed,
+          icon: Icon(Icons.edit),
+        )
       ],
     );
   }

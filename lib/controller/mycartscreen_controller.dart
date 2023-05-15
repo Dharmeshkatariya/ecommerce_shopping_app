@@ -42,8 +42,7 @@ class MYCartScreenController extends GetxController {
   getTotal() {
     total.value = 0.0;
     for (int a = 0; a < cartList.length; a++) {
-      total.value +=
-          (cartList[a].cartProductPrice * cartList[a].cartProductOty);
+      total.value += (cartList[a].cartProductPrice * cartList[a].cartProductOty);
     }
     update();
   }

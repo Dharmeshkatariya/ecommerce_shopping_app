@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
+
+import '../routes/nameroutes.dart';
 
 class CheckOutScreenController extends GetxController {
   late RxDouble total;
@@ -24,4 +28,17 @@ class CheckOutScreenController extends GetxController {
     totalPrice.value = total.value + 5;
     print(totalPrice);
   }
+
+  sendlaunchWhatsAppUri() async {
+    final link = WhatsAppUnilink(
+      phoneNumber: '+917990941293',
+      text: "your  order order name totalprice  $totalPrice,",
+    );
+    await launch(link.asUri().toString());
+    Get.toNamed(NameRoutes.succeessOrderScreen);
+  }
+
+
+
+
 }

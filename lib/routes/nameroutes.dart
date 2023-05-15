@@ -13,5 +13,6 @@ class NameRoutes {
    static const String paymentMethodScreen = "/paymentMethodScreen";
    static const String shippingAddressScreen = "/shippingAddressScreen";
    static const String addShippingAddressScreen = "/addShippingAddressScreen";
+   static const String myOrderScreen = "/myOrderScreen";
 
 }

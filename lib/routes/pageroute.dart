@@ -13,6 +13,7 @@ import 'package:furniture_shoping/screen/checkout_screen.dart';
 import 'package:furniture_shoping/screen/dashboard_screen.dart';
 import 'package:furniture_shoping/screen/product_detail_screen.dart';
 import 'package:furniture_shoping/screen/setting/add_shippingaddress_screen.dart';
+import 'package:furniture_shoping/screen/setting/myorder.dart';
 import 'package:furniture_shoping/screen/setting/profile_setting_page.dart';
 import 'package:furniture_shoping/screen/rating_review_screen.dart';
 import 'package:furniture_shoping/screen/auth/signup_screen.dart';
@@ -88,5 +89,9 @@ class PageRoutes {
         name: NameRoutes.addShippingAddressScreen,
         page: () => AddShippingAddress(),
         binding: AddShippingAddressBinding()),
+    GetPage(
+      name: NameRoutes.myOrderScreen,
+      page: () => MyOrderScreen(),
+    ),
   ];
 }
