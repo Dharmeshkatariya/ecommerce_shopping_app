@@ -156,7 +156,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

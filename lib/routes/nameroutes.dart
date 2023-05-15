@@ -1,4 +1,5 @@
 class NameRoutes {
+
    static const String loginScreen = "/loginscreen";
    static const String signUpScreen = "/signUpScreen";
    static const String dashBoardScreen = "/dashBoardScreen";
@@ -10,5 +11,7 @@ class NameRoutes {
    static const String succeessOrderScreen = "/succeessOrderScreen";
    static const String profileSettingScreen = "/profileSettingScreen";
    static const String paymentMethodScreen = "/paymentMethodScreen";
+   static const String shippingAddressScreen = "/shippingAddressScreen";
+   static const String addShippingAddressScreen = "/addShippingAddressScreen";
 
 }

@@ -13,7 +13,6 @@ class LogInScreenController extends GetxController {
   final form = GlobalKey<FormState>();
   RxBool isLoading = false.obs;
 
-
   RxBool connecteSattus = false.obs;
   final Connectivity connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> connectivytsubscription;
@@ -22,7 +21,8 @@ class LogInScreenController extends GetxController {
   void onInit() {
     super.onInit();
     intConnectivity();
-    connectivytsubscription = connectivity.onConnectivityChanged.listen(updateConnection);
+    connectivytsubscription =
+        connectivity.onConnectivityChanged.listen(updateConnection);
   }
 
   Future<void> intConnectivity() async {

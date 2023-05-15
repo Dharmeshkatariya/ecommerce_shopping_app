@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/modal/entity/address_entity.dart';
 import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
 import 'package:get/get.dart';
@@ -75,6 +76,23 @@ class Common {
     } catch (e) {
       print(e);
     }
+  }
+
+  insertAddress(Address address) async {
+    try {
+      final addressDao = database.addressDao;
+      var res = await addressDao.insertAddress(address);
+      print(res);
+
+    } catch (e) {
+      print(e);
+    }
+  }
+  Future<List<Address>> getAllAddress() async {
+    final addressDao = database.addressDao;
+    List<Address> res = await addressDao.findAllAddress();
+    print(res);
+    return res;
   }
 
   deleteCartItem(int cartId) async {

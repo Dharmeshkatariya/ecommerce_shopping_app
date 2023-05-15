@@ -1,4 +1,3 @@
-import 'package:furniture_shoping/controller/mycartscreen_controller.dart';
 import 'package:get/get.dart';
 
 import '../common.dart';
@@ -56,23 +55,20 @@ class FavouriteController extends GetxController
           itemList[i].productImage,
           itemList[i].productQty,
         );
-
         if (cartList.isEmpty) {
           await Common().insertCard(cart);
           await deleteProduct(itemList[i]);
+          Get.toNamed(NameRoutes.myCartScreen);
         } else if (cartList[i].id == itemList[i].id) {
-          Get.snackbar("my cart", "already added in my cart",
-              snackPosition: SnackPosition.BOTTOM);
+          Common.commonSnabar("my cart", "already added this item");
         } else {
           await Common().insertCard(cart);
           await deleteProduct(itemList[i]);
+          Get.toNamed(NameRoutes.myCartScreen);
         }
-        ;
       }
-
       itemList.clear();
       change(productList, status: RxStatus.success());
-      Get.toNamed(NameRoutes.myCartScreen);
     } catch (e) {
       print(e);
     }

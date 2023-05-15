@@ -67,6 +67,8 @@ class _$AppDatabase extends AppDatabase {
 
   CartDao? _cartDaoInstance;
 
+  AddressDao? _addressDaoInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -94,6 +96,8 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `Product` (`id` INTEGER NOT NULL, `productName` TEXT NOT NULL, `productImage` TEXT NOT NULL, `productPrice` REAL NOT NULL, `productQty` INTEGER NOT NULL, `isSelect` INTEGER NOT NULL, PRIMARY KEY (`id`))');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Cart` (`id` INTEGER NOT NULL, `cartProductName` TEXT NOT NULL, `cartProductPrice` REAL NOT NULL, `cartProductImage` TEXT NOT NULL, `cartProductOty` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Address` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `address` TEXT NOT NULL, `zipcode` INTEGER NOT NULL, `country` TEXT NOT NULL, `city` TEXT NOT NULL, `district` TEXT NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -114,6 +118,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   CartDao get cartDao {
     return _cartDaoInstance ??= _$CartDao(database, changeListener);
+  }
+
+  @override
+  AddressDao get addressDao {
+    return _addressDaoInstance ??= _$AddressDao(database, changeListener);
   }
 }
 
@@ -288,5 +297,73 @@ class _$CartDao extends CartDao {
   @override
   Future<void> insertCart(Cart cart) async {
     await _cartInsertionAdapter.insert(cart, OnConflictStrategy.abort);
+  }
+}
+
+class _$AddressDao extends AddressDao {
+  _$AddressDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
+        _addressInsertionAdapter = InsertionAdapter(
+            database,
+            'Address',
+            (Address item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'address': item.address,
+                  'zipcode': item.zipcode,
+                  'country': item.country,
+                  'city': item.city,
+                  'district': item.district
+                },
+            changeListener);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Address> _addressInsertionAdapter;
+
+  @override
+  Future<List<Address>> findAllAddress() async {
+    return _queryAdapter.queryList('SELECT * FROM Address',
+        mapper: (Map<String, Object?> row) => Address(
+            row['id'] as int,
+            row['name'] as String,
+            row['address'] as String,
+            row['zipcode'] as int,
+            row['country'] as String,
+            row['city'] as String,
+            row['district'] as String));
+  }
+
+  @override
+  Stream<Address?> findAddressById(int id) {
+    return _queryAdapter.queryStream('SELECT * FROM Address WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => Address(
+            row['id'] as int,
+            row['name'] as String,
+            row['address'] as String,
+            row['zipcode'] as int,
+            row['country'] as String,
+            row['city'] as String,
+            row['district'] as String),
+        arguments: [id],
+        queryableName: 'Address',
+        isView: false);
+  }
+
+  @override
+  Future<void> deleteById(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM Address WHERE id = ?1', arguments: [id]);
+  }
+
+  @override
+  Future<void> insertAddress(Address Address) async {
+    await _addressInsertionAdapter.insert(Address, OnConflictStrategy.abort);
   }
 }

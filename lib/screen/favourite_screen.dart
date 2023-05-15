@@ -14,6 +14,7 @@ class FavouriteScreen extends GetView<FavouriteController> {
   Widget build(BuildContext context) {
     controller.itemList.clear();
     controller.getProductData();
+    controller.getProductCartData();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

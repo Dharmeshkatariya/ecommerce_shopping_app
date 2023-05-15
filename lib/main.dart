@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (isLogin) {
         Get.offNamed(NameRoutes.dashBoardScreen);
       } else {
-        Get.offNamed(NameRoutes.dashBoardScreen);
+        Get.offNamed(NameRoutes.loginScreen);
       }
     });
   }

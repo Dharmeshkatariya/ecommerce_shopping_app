@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api/rest_client.dart';
 
 class SignUpScreenController extends GetxController {
-
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final passController = TextEditingController();
@@ -20,7 +20,7 @@ class SignUpScreenController extends GetxController {
 
   signUpUserApi() async {
     try {
-       isLoading.value = true;
+      isLoading.value = true;
       Map<String, dynamic> data12 = {
         "name": nameController.text.trim(),
         "email": emailController.text.trim(),
@@ -28,9 +28,14 @@ class SignUpScreenController extends GetxController {
         "password": passController.text.trim(),
         "c_password": confirmPassController.text.trim(),
       };
-      var response = await _restClient.post(path: "/${"register"}", data: data12);
+      var response =
+          await _restClient.post(path: "/${"register"}", data: data12);
       if (response.statusCode == 200) {
         Get.snackbar("success", "register");
+        var shareP = await SharedPreferences.getInstance();
+        shareP.setString("username", nameController.text);
+        shareP.setString("email", emailController.text);
+        shareP.setString("pass", passController.text);
         Get.toNamed(NameRoutes.loginScreen);
         isLoading.value = false;
       }
