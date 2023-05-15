@@ -9,13 +9,15 @@ import '../routes/nameroutes.dart';
 class FavouriteController extends GetxController
     with StateMixin<List<Product>> {
   List<Product> productList = <Product>[];
-  List<int> itemList = [];
+  List<Product> itemList = [];
+  List<Cart> cartList = [];
 
   @override
   void onInit() {
     // TODO: implement onInit
     change(productList, status: RxStatus.loading());
     getProductData();
+    getProductCartData();
     super.onInit();
   }
 
@@ -26,11 +28,10 @@ class FavouriteController extends GetxController
     change(productList, status: RxStatus.success());
   }
 
-  deleteProduct(int index) async {
-    Common().deleteProduct(productList[index].id);
-    productList.removeAt(index);
+  deleteProduct(Product product) async {
+    await Common().deleteProduct(product.id);
+    productList.remove(product);
     print(productList);
-
     update();
   }
 
@@ -40,26 +41,37 @@ class FavouriteController extends GetxController
   //   // productList.removeAt(index);
   //   update();
   // }
+  getProductCartData() async {
+    cartList = await Common().getAllCard();
+  }
 
   addToCartAllProduct() async {
+    getProductCartData();
     try {
       for (int i = 0; i < itemList.length; i++) {
         Cart cart = Cart(
-            productList[itemList[i]].id,
-            productList[itemList[i]].productName,
-            productList[itemList[i]].productPrice,
-            productList[itemList[i]].productImage,
-            productList[itemList[i]].productQty);
-        await Common().insertCard(cart);
-        deleteProduct(itemList[i]);
-        print(productList.length);
+          itemList[i].id,
+          itemList[i].productName,
+          itemList[i].productPrice,
+          itemList[i].productImage,
+          itemList[i].productQty,
+        );
+
+        if (cartList.isEmpty) {
+          await Common().insertCard(cart);
+          await deleteProduct(itemList[i]);
+        } else if (cartList[i].id == itemList[i].id) {
+          Get.snackbar("my cart", "already added in my cart",
+              snackPosition: SnackPosition.BOTTOM);
+        } else {
+          await Common().insertCard(cart);
+          await deleteProduct(itemList[i]);
+        }
+        ;
       }
 
-      print(productList);
       itemList.clear();
-
       change(productList, status: RxStatus.success());
-
       Get.toNamed(NameRoutes.myCartScreen);
     } catch (e) {
       print(e);
@@ -67,11 +79,10 @@ class FavouriteController extends GetxController
   }
 
   selectedIndex(int index, value) {
-
     for (int i = 0; i < productList.length; i++) {
       if (i == index) {
         productList[index].isSelect = value;
-        itemList.add(index);
+        itemList.add(productList[index]);
       }
     }
     change(productList, status: RxStatus.success());

@@ -206,10 +206,12 @@ class Common {
   }
 
   static commonSnabar(String title, String msg) {
-    return Get.snackbar(title, msg,
-        snackPosition: SnackPosition.BOTTOM,
-        overlayColor: Colors.red,
-        backgroundColor: Colors.red.shade100,
-       );
+    return Get.snackbar(
+      title,
+      msg,
+      snackPosition: SnackPosition.BOTTOM,
+      overlayColor: Colors.red,
+      backgroundColor: Colors.red.shade100,
+    );
   }
 }

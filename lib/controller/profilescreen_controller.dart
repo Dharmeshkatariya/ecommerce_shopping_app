@@ -7,17 +7,22 @@ class ProfileScreenController extends GetxController {
   late String email ;
 
   getImageGallery() async {
+
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     imagePath.value = image!.path;
+
   }
 
 
   getUserData()async {
+
     var shareP = await SharedPreferences.getInstance();
     email = shareP.getString("email") ?? "";
 
   }
+
+
   @override
   void onInit() {
     getUserData();

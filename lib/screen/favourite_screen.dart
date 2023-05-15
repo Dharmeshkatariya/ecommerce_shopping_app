@@ -81,7 +81,7 @@ class FavouriteScreen extends GetView<FavouriteController> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          controller.deleteProduct(index);
+                          controller.deleteProduct(product);
                         },
                         child: SvgPicture.asset("assets/icon/close.svg")),
                   ],

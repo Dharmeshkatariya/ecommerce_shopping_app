@@ -5,12 +5,15 @@ import 'package:get/get.dart';
 import '../api/rest_client.dart';
 
 class SignUpScreenController extends GetxController {
+
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final passController = TextEditingController();
   final mobileController = TextEditingController();
   final confirmPassController = TextEditingController();
+
   final form = GlobalKey<FormState>();
+
   RxBool isLoading = false.obs;
 
   final _restClient = RestClient();
