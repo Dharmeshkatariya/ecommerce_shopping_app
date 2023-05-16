@@ -60,11 +60,12 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
                 )
               ],
             ),
+           const  SizedBox(height: 20,),
             Card(
               margin: const EdgeInsets.symmetric(vertical: 5),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

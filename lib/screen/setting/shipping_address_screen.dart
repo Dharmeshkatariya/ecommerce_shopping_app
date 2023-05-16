@@ -26,7 +26,11 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
         onPressed: () {},
       ),
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios_rounded),
+        leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: const Icon(Icons.arrow_back_ios_rounded)),
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         centerTitle: true,
@@ -80,28 +84,5 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
     );
   }
 
-  Widget _card() {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          children: [
-            Text(
-              "Bruno Fernandes",
-              style: GoogleFontsStyle.poppins(
-                  fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            const Divider(
-              height: 30,
-            ),
-            Text(
-              "25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
-              style: GoogleFontsStyle.poppins(
-                  fontSize: 14, fontWeight: FontWeight.w400),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 }

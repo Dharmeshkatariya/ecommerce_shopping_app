@@ -295,6 +295,22 @@ class _$CartDao extends CartDao {
   }
 
   @override
+  Future<Cart?> updateQty(
+    int cartProductOty,
+    int id,
+  ) async {
+    return _queryAdapter.query(
+        'UPDATE Cart SET cartProductOty = ?1  WHERE id = ?2',
+        mapper: (Map<String, Object?> row) => Cart(
+            row['id'] as int,
+            row['cartProductName'] as String,
+            row['cartProductPrice'] as double,
+            row['cartProductImage'] as String,
+            row['cartProductOty'] as int),
+        arguments: [cartProductOty, id]);
+  }
+
+  @override
   Future<void> insertCart(Cart cart) async {
     await _cartInsertionAdapter.insert(cart, OnConflictStrategy.abort);
   }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class PaymentMethodScreen extends StatelessWidget {
   const PaymentMethodScreen({Key? key}) : super(key: key);
@@ -23,7 +25,11 @@ class PaymentMethodScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        leading: const Icon(Icons.keyboard_arrow_left),
+        leading: GestureDetector(
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(Icons.keyboard_arrow_left)),
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
       ),

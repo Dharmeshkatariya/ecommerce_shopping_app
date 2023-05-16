@@ -11,7 +11,13 @@ class AddShippingAddress extends GetView<AddShippingAddressController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios_rounded),
+        leading:
+            GestureDetector(
+                onTap: (){
+                  Get.back();
+                },
+                child: const Icon(Icons.arrow_back_ios_rounded),
+            ),
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         centerTitle: true,
@@ -26,21 +32,34 @@ class AddShippingAddress extends GetView<AddShippingAddressController> {
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
-              Common.textFormFiled(labeltext: "full name",controller: controller.nameController),
+              Common.textFormFiled(
+                  labeltext: "full name",
+                  controller: controller.nameController),
               _padding(),
-              Common.textFormFiled(labeltext: "Address",controller: controller.addressController),
+              Common.textFormFiled(
+                  labeltext: "Address",
+                  controller: controller.addressController),
               _padding(),
-              Common.textFormFiled(labeltext: "Zip code",controller: controller.zipcodeController),
+              Common.textFormFiled(
+                  labeltext: "Zip code",
+                  controller: controller.zipcodeController),
               _padding(),
-              Common.textFormFiled(labeltext: "Country",controller: controller.countryController),
+              Common.textFormFiled(
+                  labeltext: "Country",
+                  controller: controller.countryController),
               _padding(),
-              Common.textFormFiled(labeltext: "City",controller: controller.cityController),
+              Common.textFormFiled(
+                  labeltext: "City", controller: controller.cityController),
               _padding(),
-              Common.textFormFiled(labeltext: "District",controller: controller.districtController),
+              Common.textFormFiled(
+                  labeltext: "District",
+                  controller: controller.districtController),
               _padding(),
-              Common.button(text: "Save Address",onTap: (){
-                controller.saveToAddress();
-              }),
+              Common.button(
+                  text: "Save Address",
+                  onTap: () {
+                    controller.saveToAddress();
+                  }),
             ],
           ),
         ),

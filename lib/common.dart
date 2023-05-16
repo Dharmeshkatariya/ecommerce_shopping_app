@@ -83,11 +83,11 @@ class Common {
       final addressDao = database.addressDao;
       var res = await addressDao.insertAddress(address);
       print(res);
-
     } catch (e) {
       print(e);
     }
   }
+
   Future<List<Address>> getAllAddress() async {
     final addressDao = database.addressDao;
     List<Address> res = await addressDao.findAllAddress();
@@ -114,6 +114,18 @@ class Common {
         print(res);
         getAllCard();
       }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  updateCart( int cartQty,int cartId,) async {
+    try {
+      final cartDao = database.cartDao;
+
+      var res = await cartDao.updateQty(cartQty, cartId);
+
+      print(res);
     } catch (e) {
       print(e);
     }

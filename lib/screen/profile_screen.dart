@@ -14,8 +14,8 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          leading: Icon(Icons.keyboard_arrow_left),
+          iconTheme: const IconThemeData(color: Colors.black),
+          leading:const  Icon(Icons.keyboard_arrow_left),
           backgroundColor: Colors.white,
           centerTitle: true,
           title: const Text(

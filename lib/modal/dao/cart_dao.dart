@@ -17,5 +17,7 @@ abstract class CartDao {
   @insert
   Future<void> insertCart(Cart cart);
 
+  @Query('UPDATE Cart SET cartProductOty = :cartProductOty  WHERE id = :id')
+  Future<Cart?> updateQty(int cartProductOty,int id);
 
 }

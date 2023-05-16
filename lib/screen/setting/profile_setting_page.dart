@@ -11,7 +11,11 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.keyboard_arrow_left),
+        leading: GestureDetector(
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(Icons.keyboard_arrow_left)),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
@@ -30,15 +31,15 @@ class CheckOutScreenController extends GetxController {
   }
 
   sendlaunchWhatsAppUri() async {
+    var sharep = await SharedPreferences.getInstance();
+    var username = sharep.getString("username");
+    var qty = sharep.getDouble("qty");
     final link = WhatsAppUnilink(
       phoneNumber: '+917990941293',
-      text: "your  order order name totalprice  $totalPrice,",
+      text:
+          "hey $username  your order is submit and your order total qty $qty and   totalprice  $totalPrice,",
     );
     await launch(link.asUri().toString());
     Get.toNamed(NameRoutes.succeessOrderScreen);
   }
-
-
-
-
 }

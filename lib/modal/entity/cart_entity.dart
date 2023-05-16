@@ -10,7 +10,7 @@ class Cart {
   final String cartProductName;
   final double cartProductPrice;
   final String cartProductImage;
-  final int cartProductOty;
+  int cartProductOty;
 
   Cart(
     this.id,
