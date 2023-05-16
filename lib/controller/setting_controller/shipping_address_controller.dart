@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 import '../../common.dart';
 
-class ShippingAddressController extends GetxController {
-  RxList addressList = [].obs;
+class ShippingAddressController extends GetxController with StateMixin<  List<Address> > {
+  List<Address> addressList = <Address>[];
+  List<Address> itemList = [];
 
   @override
   void onInit() {
@@ -14,7 +15,10 @@ class ShippingAddressController extends GetxController {
   }
 
   getProductData() async {
-    addressList.value = await Common().getAllAddress();
+    addressList = await Common().getAllAddress();
     update();
+    change(addressList,status: RxStatus.success());
   }
+
+
 }

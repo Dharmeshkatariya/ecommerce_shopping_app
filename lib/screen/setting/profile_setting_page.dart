@@ -12,7 +12,7 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-            onTap: (){
+            onTap: () {
               Get.back();
             },
             child: const Icon(Icons.keyboard_arrow_left)),
@@ -25,45 +25,56 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
         ),
       ),
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _editRow("Personal information"),
-              _cardInput(
-                  laleltext: "Name", controller: controller.nameController),
-              _cardInput(
-                  laleltext: "Email", controller: controller.emailController),
-              _editRow("Password"),
-              _cardInput(
-                  laleltext: "password", controller: controller.passController),
-              _greyText(title: "Help Center", color: Colors.grey),
-              _cardData(label: "FAQ"),
-              _cardData(label: "Contact Us"),
-              _cardData(label: "Privacy & Terms"),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _editRow("Personal information"),
+                _cardInput(
+                    laleltext: "Name", controller: controller.nameController),
+                _cardInput(
+                    laleltext: "Email", controller: controller.emailController),
+                _editRow("Password"),
+                _cardInput(
+                    laleltext: "password",
+                    controller: controller.passController),
+                _greyText(title: "Help Center", color: Colors.grey),
+                _cardData(label: "FAQ"),
+                _cardData(label: "Contact Us"),
+                _cardData(label: "Privacy & Terms"),
+                _cardData(
+                    label: "Log out",
+                    onTap: () {
+                      controller.logout();
+                    }),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _cardData({required String label}) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        child: Row(
-          children: [
-            Expanded(
-                child: Text(
-              label,
-              style: GoogleFontsStyle.poppins(
-                  fontWeight: FontWeight.bold, fontSize: 16),
-            )),
-            const Icon(Icons.arrow_forward_ios_rounded),
-          ],
+  Widget _cardData({required String label, GestureTapCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: Row(
+            children: [
+              Expanded(
+                  child: Text(
+                label,
+                style: GoogleFontsStyle.poppins(
+                    fontWeight: FontWeight.bold, fontSize: 16),
+              )),
+              const Icon(Icons.arrow_forward_ios_rounded),
+            ],
+          ),
         ),
       ),
     );

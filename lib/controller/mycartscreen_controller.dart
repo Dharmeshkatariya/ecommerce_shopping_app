@@ -36,6 +36,7 @@ class MYCartScreenController extends GetxController {
     }
     var shareP = await SharedPreferences.getInstance();
     shareP.setDouble("qty", qty.value);
+    shareP.setDouble("total", total.value);
 
   }
 

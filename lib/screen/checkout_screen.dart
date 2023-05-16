@@ -49,7 +49,7 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
                 child: Column(
                   children: [
                     _textRow(
-                        ordername: "Order", price: "${controller.total.value}"),
+                        ordername: "Order", price: "${controller.total}"),
                     const SizedBox(
                       height: 10,
                     ),

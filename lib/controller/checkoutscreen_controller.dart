@@ -6,7 +6,7 @@ import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import '../routes/nameroutes.dart';
 
 class CheckOutScreenController extends GetxController {
-  late RxDouble total;
+  RxDouble total = 0.0.obs;
 
   RxDouble totalPrice = 0.0.obs;
 

@@ -11,6 +11,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final form2 = GlobalKey<FormState>();
     return Scaffold(
       body: Obx(
         () => SafeArea(
@@ -38,7 +39,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 30),
                             child: Form(
-                              key: controller.form,
+                              key: form2,
                               child: Column(
                                 children: [
                                   Common.textFormFiled(
@@ -81,37 +82,57 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                     preicon: const Icon(Icons.call),
                                   ),
                                   _commonPadding(),
-                                  Common.textFormFiled(
-                                      validator: (value) {
-                                        if (controller
-                                            .passController.text.isEmpty) {
-                                          return 'password is required';
-                                        }
-                                        return null;
-                                      },
-                                      controller: controller.passController,
-                                      labeltext: "Password",
-                                      preicon: const Icon(Icons.lock),
-                                      suficon: const Icon(Icons.visibility)),
+                                  Common.authTextFormFiled(
+                                    obsecuretext: controller.obsecuretext.value,
+                                    validator: (value) {
+                                      if (controller
+                                          .passController.text.isEmpty) {
+                                        return 'password is required';
+                                      }
+                                      return null;
+                                    },
+                                    controller: controller.passController,
+                                    labeltext: "Password",
+                                    preicon: const Icon(Icons.lock),
+                                    suficon: IconButton(
+                                        onPressed: () {
+                                          controller.obsecuretext.value =
+                                              !controller.obsecuretext.value;
+                                        },
+                                        icon: Icon(controller.obsecuretext.value
+                                            ? Icons.visibility_off_outlined
+                                            : Icons.visibility)),
+                                  ),
                                   _commonPadding(),
-                                  Common.textFormFiled(
-                                      validator: (value) {
-                                        if (controller
-                                                .confirmPassController.text !=
-                                            controller.passController.text) {
-                                          return 'Confirm password are incorrect';
-                                        }
-                                      },
-                                      controller:
-                                          controller.confirmPassController,
-                                      labeltext: "Confirm Password",
-                                      preicon: const Icon(Icons.lock),
-                                      suficon: const Icon(Icons.visibility)),
+                                  Common.authTextFormFiled(
+                                    obsecuretext:
+                                        controller.obsecuretext2.value,
+                                    validator: (value) {
+                                      if (controller
+                                              .confirmPassController.text !=
+                                          controller.passController.text) {
+                                        return 'Confirm password are incorrect';
+                                      }
+                                    },
+                                    controller:
+                                        controller.confirmPassController,
+                                    labeltext: "Confirm Password",
+                                    preicon: const Icon(Icons.lock),
+                                    suficon: IconButton(
+                                        onPressed: () {
+                                          controller.obsecuretext2.value =
+                                              !controller.obsecuretext2.value;
+                                        },
+                                        icon: Icon(
+                                            controller.obsecuretext2.value
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility)),
+                                  ),
                                   _commonPadding(),
                                   Common.button(
                                       text: "Sign Up",
                                       onTap: () {
-                                        if (controller.form.currentState!
+                                        if (form2.currentState!
                                             .validate()) {
                                           controller.signUpUserApi();
                                         }

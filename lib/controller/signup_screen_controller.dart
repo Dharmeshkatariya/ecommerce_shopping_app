@@ -12,9 +12,11 @@ class SignUpScreenController extends GetxController {
   final mobileController = TextEditingController();
   final confirmPassController = TextEditingController();
 
-  final form = GlobalKey<FormState>();
+
 
   RxBool isLoading = false.obs;
+  RxBool obsecuretext = true.obs;
+  RxBool obsecuretext2 = true.obs;
 
   final _restClient = RestClient();
 

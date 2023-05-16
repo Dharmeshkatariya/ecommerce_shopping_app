@@ -119,7 +119,10 @@ class Common {
     }
   }
 
-  updateCart( int cartQty,int cartId,) async {
+  updateCart(
+    int cartQty,
+    int cartId,
+  ) async {
     try {
       final cartDao = database.cartDao;
 
@@ -165,9 +168,41 @@ class Common {
     Widget? preicon,
     TextEditingController? controller,
     String? labeltext,
+
     dynamic validator,
   }) {
     return TextFormField(
+      controller: controller,
+      validator: validator,
+      decoration: InputDecoration(
+          labelText: labeltext,
+          focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              borderSide: BorderSide(color: Colors.grey)),
+          labelStyle: const TextStyle(color: Colors.grey),
+          hintText: labeltext,
+          hintStyle: const TextStyle(color: Colors.black),
+          focusColor: Colors.black,
+          hoverColor: Colors.black,
+          suffixIcon: suficon,
+          prefixIcon: preicon,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          )),
+    );
+  }
+
+  static Widget authTextFormFiled({
+    Widget? suficon,
+    Widget? preicon,
+    TextEditingController? controller,
+    String? labeltext,
+    required bool obsecuretext,
+
+    dynamic validator,
+  }) {
+    return TextFormField(
+      obscureText: obsecuretext,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(

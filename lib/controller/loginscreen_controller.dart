@@ -10,10 +10,11 @@ import '../routes/nameroutes.dart';
 class LogInScreenController extends GetxController {
   final emailController = TextEditingController();
   final passController = TextEditingController();
-  final form = GlobalKey<FormState>();
   RxBool isLoading = false.obs;
+  RxBool obsecuretext = true.obs;
 
   RxBool connecteSattus = false.obs;
+
   final Connectivity connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> connectivytsubscription;
 

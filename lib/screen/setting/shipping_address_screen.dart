@@ -12,50 +12,55 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
   Widget build(BuildContext context) {
     controller.getProductData();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        child: IconButton(
-          onPressed: () {
-            Get.toNamed(NameRoutes.addShippingAddressScreen);
-          },
-          icon: const Icon(
-            Icons.add,
-            color: Colors.black,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Get.toNamed(NameRoutes.addShippingAddressScreen);
+            },
+            icon: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+          ),
+          onPressed: () {},
+        ),
+        appBar: AppBar(
+          leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: const Icon(Icons.arrow_back_ios_rounded)),
+          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(color: Colors.black),
+          centerTitle: true,
+          title: const Text(
+            "Shipping address",
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        onPressed: () {},
-      ),
-      appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(Icons.arrow_back_ios_rounded)),
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-        centerTitle: true,
-        title: const Text(
-          "Shipping address",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Obx(() => Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const Divider(),
-                      itemCount: controller.addressList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _addressListView(index);
-                      }),
+        body: controller.obx(
+            (state) => Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.separated(
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const Divider(),
+                            itemCount: controller.addressList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return _addressListView(index);
+                            }),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          )),
-    );
+            onLoading:const  Center(
+              child: CircularProgressIndicator(),
+            )));
   }
 
   Widget _addressListView(int index) {
@@ -83,6 +88,4 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
       ),
     );
   }
-
-
 }

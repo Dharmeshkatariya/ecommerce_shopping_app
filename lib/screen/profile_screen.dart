@@ -15,7 +15,11 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.black),
-          leading:const  Icon(Icons.keyboard_arrow_left),
+          leading:GestureDetector(
+              onTap: (){
+                Get.back();
+              },
+              child: const  Icon(Icons.keyboard_arrow_left)),
           backgroundColor: Colors.white,
           centerTitle: true,
           title: const Text(

@@ -12,6 +12,8 @@ class LogInScreen extends GetView<LogInScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final form = GlobalKey<FormState>();
+
     return Scaffold(
         body: Obx(
       () => SafeArea(
@@ -39,7 +41,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 30),
                           child: Form(
-                            key: controller.form,
+                            key: form,
                             child: Column(
                               children: [
                                 Common.textFormFiled(
@@ -58,28 +60,34 @@ class LogInScreen extends GetView<LogInScreenController> {
                                   preicon: const Icon(Icons.email_outlined),
                                 ),
                                 _commonPadding(),
-                                Common.textFormFiled(
-                                    validator: (value) {
-                                      if (controller
-                                          .passController.text.isEmpty) {
-                                        return 'password is required';
-                                      }
-                                    },
-                                    controller: controller.passController,
-                                    labeltext: "Password",
-                                    preicon: const Icon(Icons.lock),
-                                    suficon: const Icon(Icons.visibility)),
+                                Common.authTextFormFiled(
+                                  obsecuretext: controller.obsecuretext.value,
+                                  controller: controller.passController,
+                                  validator: (value) {
+                                    if (controller
+                                        .passController.text.isEmpty) {
+                                      return 'password is required';
+                                    }
+                                  },
+                                  labeltext: "Password",
+                                  preicon: const Icon(Icons.lock),
+                                  suficon: IconButton(
+                                      onPressed: () {
+                                        controller.obsecuretext.value =
+                                            !controller.obsecuretext.value;
+                                      },
+                                      icon: Icon(controller.obsecuretext.value
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility)),
+                                ),
                                 _commonPadding(),
                                 _text(text: "Forgot Password"),
                                 _commonPadding(),
                                 Common.button(
                                     text: "Log In",
                                     onTap: () {
-                                      if (controller.form.currentState!
-                                          .validate()) {
+                                      if (form.currentState!.validate()) {
                                         controller.loginUserApi();
-
-
                                       }
                                     }),
                                 _commonPadding(),

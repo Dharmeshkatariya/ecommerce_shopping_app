@@ -6,6 +6,7 @@ import 'package:furniture_shoping/binding/loginscreen_binding.dart';
 import 'package:furniture_shoping/binding/productdetail_binding.dart';
 import 'package:furniture_shoping/binding/rating_review_binding.dart';
 import 'package:furniture_shoping/binding/setting_binding/add_shipping_address_binding.dart';
+import 'package:furniture_shoping/binding/setting_binding/my_order_binding.dart';
 import 'package:furniture_shoping/binding/setting_binding/shipping_address_binding.dart';
 import 'package:furniture_shoping/binding/signup_screen_binding.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
@@ -92,6 +93,7 @@ class PageRoutes {
     GetPage(
       name: NameRoutes.myOrderScreen,
       page: () => MyOrderScreen(),
+      binding: MyOrderBindings()
     ),
   ];
 }

@@ -6,7 +6,7 @@ import '../modal/entity/product_entity.dart';
 import '../routes/nameroutes.dart';
 
 class FavouriteController extends GetxController
-    with StateMixin<List<Product>> {
+       with StateMixin<List<Product>> {
   List<Product> productList = <Product>[];
   List<Product> itemList = [];
   List<Cart> cartList = [];

@@ -21,7 +21,9 @@ class AddShippingAddressController extends GetxController {
           int.parse(zipcodeController.text),
           countryController.text,
           cityController.text,
-          districtController.text);
+          districtController.text,
+
+      );
       await Common().insertAddress(address);
       await Common.commonSnabar("Address ", "address succefully added");
       Get.toNamed(NameRoutes.shippingAddressScreen);

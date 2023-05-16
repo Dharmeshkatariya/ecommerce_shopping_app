@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+
   runApp(const MyApp());
 }
 
@@ -82,10 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 16, fontWeight: FontWeight.w400),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 640, bottom: 20),
-              child: Common.button(text: "Get Started"),
-            ),
+           Positioned(
+             left: 20,
+             right: 20,
+
+             bottom: 20,
+             child: Common.button(text: "Get Started"),
+           ),
           ],
         ),
       ),
