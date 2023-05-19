@@ -8,6 +8,7 @@ import 'package:furniture_shoping/binding/rating_review_binding.dart';
 import 'package:furniture_shoping/binding/setting_binding/add_shipping_address_binding.dart';
 import 'package:furniture_shoping/binding/setting_binding/my_order_binding.dart';
 import 'package:furniture_shoping/binding/setting_binding/shipping_address_binding.dart';
+import 'package:furniture_shoping/binding/setting_binding/user_location_binding.dart';
 import 'package:furniture_shoping/binding/signup_screen_binding.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/screen/checkout_screen.dart';
@@ -27,6 +28,7 @@ import '../screen/favourite_screen.dart';
 import '../screen/auth/loginscreen.dart';
 import '../screen/mycartlist_screen.dart';
 import '../screen/setting/payment_method_screen.dart';
+import '../screen/setting/user_current_location.dart';
 
 class PageRoutes {
   static final pages = [
@@ -91,9 +93,13 @@ class PageRoutes {
         page: () => AddShippingAddress(),
         binding: AddShippingAddressBinding()),
     GetPage(
-      name: NameRoutes.myOrderScreen,
-      page: () => MyOrderScreen(),
-      binding: MyOrderBindings()
+        name: NameRoutes.myOrderScreen,
+        page: () => MyOrderScreen(),
+        binding: MyOrderBindings()),
+    GetPage(
+      name: NameRoutes.userLocationScreen,
+      page: () => GetUserCurrentLocationScreen(),
+      binding: UserLocationBinding(),
     ),
   ];
 }

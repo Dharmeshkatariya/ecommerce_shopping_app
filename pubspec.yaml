@@ -47,11 +47,21 @@ dependencies:
   dropdown_button2: ^2.1.2
   whatsapp_unilink: ^2.1.0
   url_launcher: ^6.1.11
+  google_maps_flutter: ^2.2.6
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.2.19
+
+
+
+
+
   floor_generator: ^1.4.1
   build_runner: ^2.1.2
 

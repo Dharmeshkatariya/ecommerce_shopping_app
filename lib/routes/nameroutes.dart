@@ -14,5 +14,6 @@ class NameRoutes {
    static const String shippingAddressScreen = "/shippingAddressScreen";
    static const String addShippingAddressScreen = "/addShippingAddressScreen";
    static const String myOrderScreen = "/myOrderScreen";
+   static const String userLocationScreen = "/userLocationScreen";
 
 }

@@ -1,9 +1,14 @@
 import 'package:get/get_navigation/src/root/internacionalization.dart';
 
 class Langaugae extends Translations {
+
+
   @override
+
   // TODO: implement keys
+
   Map<String, Map<String, String>> get keys => {
+
         "en_US": {
           "email": "Email",
           "name": "Name",
@@ -67,6 +72,9 @@ class Langaugae extends Translations {
           "logOut": "Log out",
           "contactUs": "Contact Us",
           "welcome": "WELCOME",
+          "myLocation": "My Location",
+          "getMyLocation": "Get my location",
+
           "orderComing":
               "Your order will be delivered soon. \nThank you for choosing our app!",
         },
@@ -133,6 +141,8 @@ class Langaugae extends Translations {
           "logOut": "લૉગ આઉટ",
           "contactUs": "અમારો સંપર્ક કરો",
           "welcome": "સ્વાગત છે",
+          "myLocation": "મારું સ્થાન",
+          "getMyLocation": "મારું સ્થાન મેળવો",
           "orderComing":
               "તમારો ઓર્ડર ટૂંક સમયમાં વિતરિત કરવામાં આવશે. \nઅમારી એપ્લિકેશન પસંદ કરવા બદલ આભાર!",
         },
@@ -198,8 +208,11 @@ class Langaugae extends Translations {
           "privacy": "गोपनीयता व शर्तें",
           "logOut": "लॉग आउट",
           "contactUs": "संपर्क करें",
+          "myLocation": "मेरा स्थान",
+          "getMyLocation": "मेरा स्थान प्राप्त करें",
           "welcome": "स्वागत",
-          "orderComing": "आपका ऑर्डर जल्द ही डिलीवर कर दिया जाएगा। \nहमारे ऐप को चुनने के लिए धन्यवाद!",
+          "orderComing":
+              "आपका ऑर्डर जल्द ही डिलीवर कर दिया जाएगा। \nहमारे ऐप को चुनने के लिए धन्यवाद!",
         },
       };
 }

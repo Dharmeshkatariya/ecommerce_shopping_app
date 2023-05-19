@@ -27,51 +27,56 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
           style: const TextStyle(color: Colors.black),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _commonRow(
-                text: "shipAddress".tr,
-                onPressed: () {
-                  Get.toNamed(NameRoutes.shippingAddressScreen);
-                }),
-            _commonRow(text: "payment".tr),
-            commonCard(text: "*******5252", svg: "assets/icon/mastercard.svg"),
-            _commonRow(text: "deliveryMethod".tr),
-            commonCard(text: "2day".tr, svg: "assets/icon/dhl.svg"),
-            Card(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                child: Column(
-                  children: [
-                    _textRow(ordername: "order".tr, price: "${controller.total}"),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _textRow(ordername: "delivery".tr, price: "5"),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _textRow(
-                        ordername: "total".tr.toLowerCase(),
-                        price: "${controller.totalPrice.value}"),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
+      body: SingleChildScrollView(
+
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _commonRow(
+                  text: "shipAddress".tr,
+                  onPressed: () {
+                    Get.toNamed(NameRoutes.shippingAddressScreen);
+                  }),
+              _commonRow(text: "payment".tr),
+              commonCard(
+                  text: "*******5252", svg: "assets/icon/mastercard.svg"),
+              _commonRow(text: "deliveryMethod".tr),
+              commonCard(text: "2day".tr, svg: "assets/icon/dhl.svg"),
+              Card(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Column(
+                    children: [
+                      _textRow(
+                          ordername: "order".tr, price: "${controller.total}"),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _textRow(ordername: "delivery".tr, price: "5"),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _textRow(
+                          ordername: "total".tr.toLowerCase(),
+                          price: "${controller.totalPrice.value}"),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Common.button(
-                text: "submitOrder".tr,
-                onTap: () {
-                  controller.sendlaunchWhatsAppUri();
-                }),
-          ],
+              Common.button(
+                  text: "submitOrder".tr,
+                  onTap: () {
+                    controller.sendlaunchWhatsAppUri();
+                  }),
+            ],
+          ),
         ),
       ),
     );

@@ -103,13 +103,18 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                       title: "shipAddress".tr,
                       desc: "getAddress".tr),
                   _commonCard(
+                      onTap: () {
+                        Get.toNamed(NameRoutes.userLocationScreen);
+                      },
+                      title: "myLocation".tr,
+                      desc: "getMyLocation".tr),
+                  _commonCard(
                       title: "paymentMethod".tr,
                       desc: "haveCard".tr,
                       onTap: () {
                         Get.toNamed(NameRoutes.paymentMethodScreen);
                       }),
-                  _commonCard(
-                      title: "myReviews".tr, desc: "reviewItem".tr),
+                  _commonCard(title: "myReviews".tr, desc: "reviewItem".tr),
                   _commonCard(
                       onTap: () {
                         Get.toNamed(NameRoutes.profileSettingScreen);
