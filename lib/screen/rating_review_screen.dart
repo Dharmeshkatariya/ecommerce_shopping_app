@@ -15,9 +15,9 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
-        title: const Text(
-          "Rating & Review",
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          "rating".tr,
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: Container(
@@ -60,7 +60,9 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
                 )
               ],
             ),
-           const  SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Card(
               margin: const EdgeInsets.symmetric(vertical: 5),
               child: Padding(
@@ -92,13 +94,13 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
                         print(rating);
                       },
                     ),
-                  const   Text(
+                    const Text(
                         "Nice Furniture with good delivery. The delivery time is very fast. Then products look like exactly the picture in the app. Besides, color is also the same and quality is very good despite very cheap price"),
                   ],
                 ),
               ),
             ),
-            Common.button(text: "Write a review"),
+            Common.button(text: "writeRev".tr),
           ],
         ),
       ),

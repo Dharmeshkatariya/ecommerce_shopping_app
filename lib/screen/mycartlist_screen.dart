@@ -29,9 +29,9 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
               Icons.keyboard_arrow_left,
             ),
           ),
-          title: const Text(
-            "my cart",
-            style: TextStyle(color: Colors.black),
+          title:  Text(
+            "myCart".tr,
+            style: const TextStyle(color: Colors.black),
           ),
         ),
         body: Obx(() => Container(
@@ -50,12 +50,12 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Total"),
+                       Text("total".tr),
                       Text(controller.total.toString()),
                     ],
                   ),
                   Common.button(
-                      text: "Check Out",
+                      text: "checkOut".tr,
                       onTap: () {
                         Get.toNamed(NameRoutes.checkoutScreen, arguments: {
                           "total": controller.total,

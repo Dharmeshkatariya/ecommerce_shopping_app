@@ -6,7 +6,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProfileSettingController extends GetxController {
   final emailController = TextEditingController();
   final nameController = TextEditingController();
+
   final passController = TextEditingController();
+
+
+  RxString gender = "English".obs;
+
+  setData(value) {
+    gender.value = value.toString();
+
+    update();
+
+  }
 
   @override
   void onInit() {

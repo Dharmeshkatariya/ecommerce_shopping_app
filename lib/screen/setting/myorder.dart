@@ -21,7 +21,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
-            "My orders",
+            "myOrder".tr,
             style: GoogleFontsStyle.poppins(
                 color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16),
           ),
@@ -64,9 +64,9 @@ class MyOrderScreen extends GetView<MyOrderController> {
   Widget _orderNumberRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text("order no"),
-        Text("date"),
+      children:  [
+        Text("orderNo".tr),
+        Text("date".tr),
       ],
     );
   }
@@ -76,7 +76,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         _detailButton(),
-        const Text("Cancel"),
+         Text("cancel".tr),
       ],
     );
   }
@@ -86,11 +86,11 @@ class MyOrderScreen extends GetView<MyOrderController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Quantity: ${controller.qty.value}",
+         "${"quantity".tr}: ${controller.qty.value}",
           style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
         ),
         Text(
-          "Total Amount: ${controller.total.value}",
+          "${"totalAmount".tr}: ${controller.qty.value}",
           style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
         ),
       ],
@@ -105,7 +105,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
             color: Colors.black, borderRadius: BorderRadius.circular(14)),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: Text(
-          "Detail",
+          "detail".tr,
           style: GoogleFontsStyle.poppins(
               fontWeight: FontWeight.w400, fontSize: 16, color: Colors.white),
         ),

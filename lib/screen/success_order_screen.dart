@@ -21,23 +21,25 @@ class SuccessOrderScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "SUCCESS!",
+                      "success".tr,
                       style: GoogleFontsStyle.poppins(
                           fontWeight: FontWeight.w600, fontSize: 32),
                     ),
                     Image.asset("assets/image/orderdone.png"),
-                    const Text(
-                        "Your order will be delivered soon. \nThank you for choosing our app!"),
+                    Text("orderComing".tr),
                   ],
                 ),
               ),
-              Common.button(text: "Track your orders",onTap: (){
-                Get.toNamed(NameRoutes.myOrderScreen);
-
-              }),
-              Common.button(text: "Back to home",onTap: (){
-                Get.toNamed(NameRoutes.dashBoardScreen);
-              }),
+              Common.button(
+                  text: "trackYourOrder".tr,
+                  onTap: () {
+                    Get.toNamed(NameRoutes.myOrderScreen);
+                  }),
+              Common.button(
+                  text: "backHome".tr,
+                  onTap: () {
+                    Get.toNamed(NameRoutes.dashBoardScreen);
+                  }),
             ],
           ),
         ),

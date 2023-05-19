@@ -22,8 +22,7 @@ class LogInScreenController extends GetxController {
   void onInit() {
     super.onInit();
     intConnectivity();
-    connectivytsubscription =
-        connectivity.onConnectivityChanged.listen(updateConnection);
+    connectivytsubscription = connectivity.onConnectivityChanged.listen(updateConnection);
   }
 
   Future<void> intConnectivity() async {
@@ -35,6 +34,7 @@ class LogInScreenController extends GetxController {
       print(e);
     }
   }
+
 
   updateConnection(ConnectivityResult result) {
     if (result == ConnectivityResult.wifi) {

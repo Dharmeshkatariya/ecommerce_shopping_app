@@ -20,9 +20,9 @@ class PaymentMethodScreen extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: const Text(
-          "Payment Method",
-          style: TextStyle(color: Colors.black),
+        title:  Text(
+          "paymentMethod".tr,
+          style: const TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: GestureDetector(

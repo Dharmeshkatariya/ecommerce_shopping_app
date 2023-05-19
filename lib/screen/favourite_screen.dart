@@ -19,9 +19,9 @@ class FavouriteScreen extends GetView<FavouriteController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
-          "Favoutires",
-          style: TextStyle(
+        title: Text(
+          "favourite".tr,
+          style: const TextStyle(
               fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
         ),
       ),
@@ -39,10 +39,11 @@ class FavouriteScreen extends GetView<FavouriteController> {
                     const Divider(),
               ),
             ),
-            Common.button(text: "Add all to my cart", onTap: () {
-
-              controller.addToCartAllProduct();
-            }),
+            Common.button(
+                text: "addAllMyCart".tr,
+                onTap: () {
+                  controller.addToCartAllProduct();
+                }),
           ]),
         ),
       ),

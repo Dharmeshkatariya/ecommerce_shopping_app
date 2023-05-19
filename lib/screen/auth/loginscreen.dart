@@ -29,7 +29,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                     children: [
                       Common.headerRow(),
                       Text(
-                        "Hello! \nWELCOME BACK",
+                        "welcomeBack".tr,
                         textAlign: TextAlign.center,
                         style: GoogleFontsStyle.poppins(
                             fontSize: 30, fontWeight: FontWeight.w600),
@@ -56,7 +56,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                                     }
                                   },
                                   controller: controller.emailController,
-                                  labeltext: "Email",
+                                  labeltext: "email".tr,
                                   preicon: const Icon(Icons.email_outlined),
                                 ),
                                 _commonPadding(),
@@ -69,7 +69,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                                       return 'password is required';
                                     }
                                   },
-                                  labeltext: "Password",
+                                  labeltext: "password".tr,
                                   preicon: const Icon(Icons.lock),
                                   suficon: IconButton(
                                       onPressed: () {
@@ -81,10 +81,10 @@ class LogInScreen extends GetView<LogInScreenController> {
                                           : Icons.visibility)),
                                 ),
                                 _commonPadding(),
-                                _text(text: "Forgot Password"),
+                                _text(text: "forgetPassword".tr),
                                 _commonPadding(),
                                 Common.button(
-                                    text: "Log In",
+                                    text: "login".tr,
                                     onTap: () {
                                       if (form.currentState!.validate()) {
                                         controller.loginUserApi();
@@ -92,7 +92,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                                     }),
                                 _commonPadding(),
                                 _text(
-                                    text: "Sign up",
+                                    text: "signUp".tr,
                                     onTap: () {
                                       Get.toNamed(NameRoutes.signUpScreen);
                                     }),

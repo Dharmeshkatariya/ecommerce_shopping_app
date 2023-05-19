@@ -15,122 +15,118 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.black),
-          leading:GestureDetector(
-              onTap: (){
+          leading: GestureDetector(
+              onTap: () {
                 Get.back();
               },
-              child: const  Icon(Icons.keyboard_arrow_left)),
+              child: const Icon(Icons.keyboard_arrow_left)),
           backgroundColor: Colors.white,
           centerTitle: true,
-          title: const Text(
-            "Profile",
-            style: TextStyle(color: Colors.black),
+          title: Text(
+            "profile".tr,
+            style: const TextStyle(color: Colors.black),
           ),
         ),
         body: Obx(
-              () =>
-              SingleChildScrollView(
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 10),
-                  child: Column(
+          () => SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
+                      Stack(
                         children: [
-                          Stack(
-                            children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: controller.imagePath.isEmpty
-                                      ? Image.asset(
-                                    "assets/image/userprofile.png",
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  )
-                                      : Image.file(
-                                    File(
-                                      controller.imagePath.value,
-                                    ),
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  )),
-                              Positioned(
-                                  right: 12,
-                                  bottom: 10,
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        controller.getImageGallery();
-                                      },
-                                      child: const Icon(
-                                        Icons.add_a_photo_outlined,
-                                        size: 25,
-                                      ))),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                controller.username,
-                                style: GoogleFontsStyle.inter(
-                                    fontWeight: FontWeight.w700, fontSize: 20),
-                              ),
-                              Text(
-                                controller.email,
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                                style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .labelSmall,
-                                softWrap: false,
-                              ),
-                            ],
-                          )
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: controller.imagePath.isEmpty
+                                  ? Image.asset(
+                                      "assets/image/userprofile.png",
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.file(
+                                      File(
+                                        controller.imagePath.value,
+                                      ),
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    )),
+                          Positioned(
+                              right: 12,
+                              bottom: 10,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    controller.getImageGallery();
+                                  },
+                                  child: const Icon(
+                                    Icons.add_a_photo_outlined,
+                                    size: 25,
+                                  ))),
                         ],
                       ),
-                      _commonCard(
-                          onTap: () {
-                            Get.toNamed(NameRoutes.myOrderScreen);
-                          },
-                          title: "My orders",
-                          desc: "Already have 10 orders"),
-                      _commonCard(
-                          onTap: () {
-                            Get.toNamed(NameRoutes.shippingAddressScreen);
-                          },
-                          title: " Shipping Addresses",
-                          desc: "03 Addresses"),
-                      _commonCard(
-                          title: "Payment Method",
-                          desc: "You have 2 cards",
-                          onTap: () {
-                            Get.toNamed(NameRoutes.paymentMethodScreen);
-                          }),
-                      _commonCard(
-                          title: "My  reviews", desc: "Reviews for 5 items"),
-                      _commonCard(
-                          onTap: () {
-                            Get.toNamed(NameRoutes.profileSettingScreen);
-                          },
-                          title: "Setting",
-                          desc: "Notification, Password, FAQ, Contact"),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            controller.username,
+                            style: GoogleFontsStyle.inter(
+                                fontWeight: FontWeight.w700, fontSize: 20),
+                          ),
+                          Text(
+                            controller.email,
+                            overflow: TextOverflow.clip,
+                            maxLines: 1,
+                            style: Theme.of(context).textTheme.labelSmall,
+                            softWrap: false,
+                          ),
+                        ],
+                      )
                     ],
                   ),
-                ),
+                  _commonCard(
+                      onTap: () {
+                        Get.toNamed(NameRoutes.myOrderScreen);
+                      },
+                      title: "myOrder".tr,
+                      desc: "alreadyOrder".tr),
+                  _commonCard(
+                      onTap: () {
+                        Get.toNamed(NameRoutes.shippingAddressScreen);
+                      },
+                      title: " shipAddress".tr,
+                      desc: "getAddress".tr),
+                  _commonCard(
+                      title: "paymentMethod".tr,
+                      desc: "haveCard".tr,
+                      onTap: () {
+                        Get.toNamed(NameRoutes.paymentMethodScreen);
+                      }),
+                  _commonCard(
+                      title: "myReviews".tr, desc: "reviewItem".tr),
+                  _commonCard(
+                      onTap: () {
+                        Get.toNamed(NameRoutes.profileSettingScreen);
+                      },
+                      title: "setting".tr,
+                      desc: "faqDesc".tr),
+                ],
               ),
+            ),
+          ),
         ));
   }
 
-  Widget _commonCard({required String title,
-    required String desc,
-    GestureTapCallback? onTap}) {
+  Widget _commonCard(
+      {required String title,
+      required String desc,
+      GestureTapCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Card(

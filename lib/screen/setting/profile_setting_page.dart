@@ -10,50 +10,85 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(Icons.keyboard_arrow_left)),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
-        title: const Text(
-          "Setting",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _editRow("Personal information"),
-                _cardInput(
-                    laleltext: "Name", controller: controller.nameController),
-                _cardInput(
-                    laleltext: "Email", controller: controller.emailController),
-                _editRow("Password"),
-                _cardInput(
-                    laleltext: "password",
-                    controller: controller.passController),
-                _greyText(title: "Help Center", color: Colors.grey),
-                _cardData(label: "FAQ"),
-                _cardData(label: "Contact Us"),
-                _cardData(label: "Privacy & Terms"),
-                _cardData(
-                    label: "Log out",
-                    onTap: () {
-                      controller.logout();
-                    }),
-              ],
-            ),
+        appBar: AppBar(
+          leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: const Icon(Icons.keyboard_arrow_left)),
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          title: const Text(
+            "Setting",
+            style: TextStyle(color: Colors.black),
           ),
         ),
-      ),
+        body: Obx(
+          () => SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _editRow("personalInfo".tr),
+                    _cardInput(
+                        laleltext: "name".tr,
+                        controller: controller.nameController),
+                    _cardInput(
+                        laleltext: "email".tr,
+                        controller: controller.emailController),
+                    _editRow("password".tr),
+                    _cardInput(
+                        laleltext: "password".tr.toLowerCase(),
+                        controller: controller.passController),
+                    _greyText(title: "language".tr, color: Colors.grey),
+                    _radioListTile(value: "English", onTap: () {
+
+
+
+
+                    }),
+
+                    _radioListTile(value: "Hindi", onTap: () {
+
+
+                    }),
+
+                    _radioListTile(value: "Gujarati", onTap: () {
+
+
+                    }),
+
+                    _greyText(title: "helpCenter".tr, color: Colors.grey),
+                    _cardData(label: "fAQ".tr),
+                    _cardData(label: "contactUs".tr),
+                    _cardData(label: "privacy".tr),
+                    _cardData(
+                        label: "logOut".tr,
+                        onTap: () {
+                          controller.logout();
+                        }),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
+  }
+
+  Widget _radioListTile({required String value, GestureTapCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: RadioListTile(
+          title: Text(value),
+          value: value,
+          groupValue: controller.gender.value,
+          onChanged: (value) {
+            controller.setData(value);
+          }),
     );
   }
 

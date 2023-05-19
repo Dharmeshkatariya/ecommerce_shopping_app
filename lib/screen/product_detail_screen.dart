@@ -171,7 +171,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
               )),
         ),
         Common.button(
-            text: "Add to Cart",
+            text: "addToCart".tr,
             onTap: () {
               controller.addToCart();
             },

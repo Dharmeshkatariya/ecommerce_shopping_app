@@ -7,9 +7,12 @@ import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'langauge/langauge.dart';
+
 void main() {
 
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +20,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
+
+
+      translations: Langaugae(),
+      locale: const Locale('gu','IN'),
+      fallbackLocale: const Locale('en','US'),
+
+
+
       getPages: PageRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.black),

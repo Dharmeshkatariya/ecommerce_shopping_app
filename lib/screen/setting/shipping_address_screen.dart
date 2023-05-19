@@ -34,9 +34,9 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Colors.black),
           centerTitle: true,
-          title: const Text(
-            "Shipping address",
-            style: TextStyle(color: Colors.black),
+          title:  Text(
+            "shipAddress".tr,
+            style:const  TextStyle(color: Colors.black),
           ),
         ),
         body: controller.obx(

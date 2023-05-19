@@ -32,7 +32,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           )
         ],
         title: Text(
-          "MAKE HOME \nBEAUTIFUL",
+          "makeHomeBeautiful".tr,
           textAlign: TextAlign.center,
           style: GoogleFontsStyle.inter(
               fontSize: 16,

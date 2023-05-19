@@ -27,7 +27,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                       children: [
                         Common.headerRow(),
                         Text(
-                          "WELCOME",
+                          "welcome".tr,
                           textAlign: TextAlign.center,
                           style: GoogleFontsStyle.poppins(
                               fontSize: 30, fontWeight: FontWeight.w600),
@@ -46,11 +46,11 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                     validator: (value) {
                                       if (controller
                                           .nameController.text.isEmpty) {
-                                        return 'email is required';
+                                        return 'name is required';
                                       }
                                     },
                                     controller: controller.nameController,
-                                    labeltext: "Name",
+                                    labeltext: "name".tr,
                                     preicon: const Icon(Icons.person),
                                   ),
                                   _commonPadding(),
@@ -67,7 +67,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                       }
                                     },
                                     controller: controller.emailController,
-                                    labeltext: "Email",
+                                    labeltext: "email".tr,
                                     preicon: const Icon(Icons.email_outlined),
                                   ),
                                   _commonPadding(),
@@ -78,7 +78,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                       }
                                     },
                                     controller: controller.mobileController,
-                                    labeltext: "mobile",
+                                    labeltext: "mobile".tr,
                                     preicon: const Icon(Icons.call),
                                   ),
                                   _commonPadding(),
@@ -92,7 +92,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                       return null;
                                     },
                                     controller: controller.passController,
-                                    labeltext: "Password",
+                                    labeltext: "password".tr,
                                     preicon: const Icon(Icons.lock),
                                     suficon: IconButton(
                                         onPressed: () {
@@ -116,7 +116,7 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                     },
                                     controller:
                                         controller.confirmPassController,
-                                    labeltext: "Confirm Password",
+                                    labeltext: "confirmPassword".tr,
                                     preicon: const Icon(Icons.lock),
                                     suficon: IconButton(
                                         onPressed: () {
@@ -130,10 +130,9 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                                   ),
                                   _commonPadding(),
                                   Common.button(
-                                      text: "Sign Up",
+                                      text: "signUp".tr,
                                       onTap: () {
-                                        if (form2.currentState!
-                                            .validate()) {
+                                        if (form2.currentState!.validate()) {
                                           controller.signUpUserApi();
                                         }
                                       }),
@@ -161,9 +160,9 @@ class SignUpScreen extends GetView<SignUpScreenController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _text(text: "Already have account ? ", color: Colors.grey),
+        _text(text: "alreadyAccount".tr, color: Colors.grey),
         _text(
-            text: "Sign in",
+            text: "signIn".tr,
             onTap: () {
               Get.toNamed(NameRoutes.loginScreen);
             }),

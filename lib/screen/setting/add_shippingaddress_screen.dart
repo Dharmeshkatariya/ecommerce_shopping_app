@@ -21,9 +21,9 @@ class AddShippingAddress extends GetView<AddShippingAddressController> {
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
-          "Add Shipping Address",
-          style: TextStyle(color: Colors.black),
+        title:  Text(
+          "addShipAddress".tr,
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
@@ -33,30 +33,30 @@ class AddShippingAddress extends GetView<AddShippingAddressController> {
           child: Column(
             children: [
               Common.textFormFiled(
-                  labeltext: "full name",
+                  labeltext: "name".tr,
                   controller: controller.nameController),
               _padding(),
               Common.textFormFiled(
-                  labeltext: "Address",
+                  labeltext: "address".tr,
                   controller: controller.addressController),
               _padding(),
               Common.textFormFiled(
-                  labeltext: "Zip code",
+                  labeltext: "code".tr,
                   controller: controller.zipcodeController),
               _padding(),
               Common.textFormFiled(
-                  labeltext: "Country",
+                  labeltext: "country".tr,
                   controller: controller.countryController),
               _padding(),
               Common.textFormFiled(
-                  labeltext: "City", controller: controller.cityController),
+                  labeltext: "city".tr, controller: controller.cityController),
               _padding(),
               Common.textFormFiled(
-                  labeltext: "District",
+                  labeltext: "district".tr,
                   controller: controller.districtController),
               _padding(),
               Common.button(
-                  text: "Save Address",
+                  text: "saveAddress".tr,
                   onTap: () {
                     controller.saveToAddress();
                   }),
