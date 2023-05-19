@@ -10,26 +10,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'langauge/langauge.dart';
 
 void main() {
-
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp
+
+  ({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return GetMaterialApp(
 
 
       translations: Langaugae(),
-      locale: const Locale('gu','IN'),
-      fallbackLocale: const Locale('en','US'),
-
-
-
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('en', 'US'),
       getPages: PageRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.black),
@@ -39,7 +35,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage
+
+  ({super.key, required this.title});
 
   final String title;
 
@@ -67,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,13 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 16, fontWeight: FontWeight.w400),
               ),
             ),
-           Positioned(
-             left: 20,
-             right: 20,
+            Positioned(
+              left: 20,
+              right: 20,
 
-             bottom: 20,
-             child: Common.button(text: "Get Started"),
-           ),
+              bottom: 20,
+              child: Common.button(text: "Get Started"),
+            ),
           ],
         ),
       ),

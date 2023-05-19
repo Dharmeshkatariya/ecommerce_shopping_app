@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/setting_controller/my_order_coontroller.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
@@ -64,7 +65,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
   Widget _orderNumberRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children:  [
+      children: [
         Text("orderNo".tr),
         Text("date".tr),
       ],
@@ -75,8 +76,8 @@ class MyOrderScreen extends GetView<MyOrderController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _detailButton(),
-         Text("cancel".tr),
+        Common.smallButton(text: "detail".tr, onTap: () {}),
+        Text("cancel".tr),
       ],
     );
   }
@@ -86,7 +87,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-         "${"quantity".tr}: ${controller.qty.value}",
+          "${"quantity".tr}: ${controller.qty.value}",
           style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
         ),
         Text(
@@ -94,22 +95,6 @@ class MyOrderScreen extends GetView<MyOrderController> {
           style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
         ),
       ],
-    );
-  }
-
-  Widget _detailButton({GestureTapCallback? onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.black, borderRadius: BorderRadius.circular(14)),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-        child: Text(
-          "detail".tr,
-          style: GoogleFontsStyle.poppins(
-              fontWeight: FontWeight.w400, fontSize: 16, color: Colors.white),
-        ),
-      ),
     );
   }
 }

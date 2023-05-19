@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/modal/entity/address_entity.dart';
 import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
+import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -168,7 +169,6 @@ class Common {
     Widget? preicon,
     TextEditingController? controller,
     String? labeltext,
-
     dynamic validator,
   }) {
     return TextFormField(
@@ -198,7 +198,6 @@ class Common {
     TextEditingController? controller,
     String? labeltext,
     required bool obsecuretext,
-
     dynamic validator,
   }) {
     return TextFormField(
@@ -277,6 +276,21 @@ class Common {
       snackPosition: SnackPosition.BOTTOM,
       overlayColor: Colors.red,
       backgroundColor: Colors.red.shade100,
+    );
+  }
+
+  static Widget smallButton({GestureTapCallback? onTap, required String text}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          decoration: BoxDecoration(
+              color: Colors.black, borderRadius: BorderRadius.circular(20)),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+          child: Text(
+            text,
+            style: GoogleFontsStyle.poppins(
+                fontWeight: FontWeight.w400, fontSize: 16, color: Colors.white),
+          )),
     );
   }
 }

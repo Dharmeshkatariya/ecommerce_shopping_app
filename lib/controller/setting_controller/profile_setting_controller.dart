@@ -9,14 +9,12 @@ class ProfileSettingController extends GetxController {
 
   final passController = TextEditingController();
 
-
-  RxString gender = "English".obs;
+  RxString gender = "".obs;
 
   setData(value) {
     gender.value = value.toString();
 
     update();
-
   }
 
   @override
@@ -38,8 +36,6 @@ class ProfileSettingController extends GetxController {
   logout() async {
     var shareP = await SharedPreferences.getInstance();
 
-    shareP.remove("email");
-    shareP.remove("username");
     shareP.remove("login");
     Get.offNamed(NameRoutes.loginScreen);
   }

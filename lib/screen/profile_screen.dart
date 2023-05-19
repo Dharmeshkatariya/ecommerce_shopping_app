@@ -100,7 +100,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                       onTap: () {
                         Get.toNamed(NameRoutes.shippingAddressScreen);
                       },
-                      title: " shipAddress".tr,
+                      title: "shipAddress".tr,
                       desc: "getAddress".tr),
                   _commonCard(
                       title: "paymentMethod".tr,

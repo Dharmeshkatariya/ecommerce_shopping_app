@@ -19,8 +19,8 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
-          title: const Text(
-            "Setting",
+          title: Text(
+            "setting".tr,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -45,23 +45,18 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
                         laleltext: "password".tr.toLowerCase(),
                         controller: controller.passController),
                     _greyText(title: "language".tr, color: Colors.grey),
-                    _radioListTile(value: "English", onTap: () {
-
-
-
-
-                    }),
-
-                    _radioListTile(value: "Hindi", onTap: () {
-
-
-                    }),
-
-                    _radioListTile(value: "Gujarati", onTap: () {
-
-
-                    }),
-
+                    _radioListTile(
+                      value: "English",
+                      locale: Locale('en', 'US'),
+                    ),
+                    _radioListTile(
+                      value: "Hindi",
+                      locale: Locale('hi', 'IN'),
+                    ),
+                    _radioListTile(
+                        locale: Locale('gu', 'IN'),
+                        value: "Gujarati",
+                        onTap: () {}),
                     _greyText(title: "helpCenter".tr, color: Colors.grey),
                     _cardData(label: "fAQ".tr),
                     _cardData(label: "contactUs".tr),
@@ -79,16 +74,78 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
         ));
   }
 
-  Widget _radioListTile({required String value, GestureTapCallback? onTap}) {
+  changeLocale(Locale locale) {
+    Get.updateLocale(locale);
+    Get.back();
+  }
+
+  commonDialog(Locale locale) {
+    return Get.dialog(Center(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              alignment: Alignment.center,
+              width: 300,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  const Text(
+                    "Are You Sure for you want to change the language?",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Common.smallButton(
+                          text: "Yes",
+                          onTap: () {
+                            changeLocale(locale);
+                          }),
+                      Common.smallButton(
+                          text: "No",
+                          onTap: () {
+                            Get.back();
+                          }),
+                    ],
+                  )
+                ],
+              )),
+        ),
+      ),
+    ));
+  }
+
+  Widget _radioListTile(
+      {required String value,
+      GestureTapCallback? onTap,
+      required Locale locale}) {
     return GestureDetector(
       onTap: onTap,
-      child: RadioListTile(
-          title: Text(value),
-          value: value,
-          groupValue: controller.gender.value,
-          onChanged: (value) {
-            controller.setData(value);
-          }),
+      child: ListTile(
+        title: Text(value),
+        leading: Radio(
+            fillColor: MaterialStateColor.resolveWith((states) => Colors.green),
+            focusColor:
+                MaterialStateColor.resolveWith((states) => Colors.green),
+            value: value,
+            groupValue: controller.gender.value,
+            onChanged: (value) {
+              controller.setData(value);
+              commonDialog(locale);
+            }),
+      ),
     );
   }
 
@@ -144,3 +201,14 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
     );
   }
 }
+// child: ListTile(
+//   onTap: (){},
+//   : Radio(
+//       value: value,
+//       groupValue: controller.gender.value,
+//       onChanged: (value) {
+//         controller.setData(value);
+//       }
+//
+//       ),
+// ),
