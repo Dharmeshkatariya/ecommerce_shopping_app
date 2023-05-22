@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/checkoutscreen_controller.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -10,21 +11,23 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
   const CheckOutScreen({Key? key}) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
+
     controller.getData();
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: AppColor.black),
         leading: GestureDetector(
             onTap: () {
               Get.back();
             },
             child: const Icon(Icons.keyboard_arrow_left)),
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         centerTitle: true,
         title: Text(
           "checkOut".tr,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: AppColor.black),
         ),
       ),
       body: SingleChildScrollView(
@@ -101,12 +104,12 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
         Text(
           ordername,
           style: GoogleFontsStyle.poppins(
-              fontSize: 18, fontWeight: FontWeight.w400, color: Colors.grey),
+              fontSize: 18, fontWeight: FontWeight.w400, color: AppColor.grey),
         ),
         Text(
           price!,
           style: GoogleFontsStyle.poppins(
-              fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black),
+              fontSize: 18, fontWeight: FontWeight.w400, color: AppColor.black),
         ),
       ],
     );
@@ -119,7 +122,7 @@ class CheckOutScreen extends GetView<CheckOutScreenController> {
         Text(
           text,
           style: GoogleFontsStyle.poppins(
-              fontWeight: FontWeight.w600, fontSize: 18, color: Colors.grey),
+              fontWeight: FontWeight.w600, fontSize: 18, color: AppColor.grey),
         ),
         IconButton(
           onPressed: onPressed,

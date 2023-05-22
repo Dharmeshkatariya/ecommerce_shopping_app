@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/setting_controller/profile_setting_controller.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
@@ -11,17 +12,17 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColor.white,
           leading: GestureDetector(
               onTap: () {
                 Get.back();
               },
-              child: const Icon(Icons.keyboard_arrow_left)),
+              child: const Icon(
+                Icons.keyboard_arrow_left,
+              )),
           centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
           title: Text(
             "setting".tr,
-            style: TextStyle(color: Colors.black),
           ),
         ),
         body: Obx(
@@ -57,6 +58,16 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
                         locale: Locale('gu', 'IN'),
                         value: "Gujarati",
                         onTap: () {}),
+                    // _greyText(title: "Theme".tr, color: Colors.grey),
+                    // SwitchListTile(
+                    //   value: controller.isDarkMode.value,
+                    //   onChanged: (value) {
+                    //     controller.changeTheme();
+                    //   },
+                    //   title: const Text("DarkMode"),
+                    //   inactiveThumbColor: Colors.grey,
+                    //   activeColor: Colors.blue,
+                    // ),
                     _greyText(title: "helpCenter".tr, color: Colors.grey),
                     _cardData(label: "fAQ".tr),
                     _cardData(label: "contactUs".tr),
@@ -74,6 +85,21 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
         ));
   }
 
+  Widget themeRadiolist() {
+    return ListTile(
+      title: Text("Dark"),
+      leading: Radio(
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.green),
+          focusColor: MaterialStateColor.resolveWith((states) => Colors.green),
+          value: "value",
+          groupValue: controller.gender.value,
+          onChanged: (value) {
+            // controller.setData(value);
+            // commonDialog(locale);
+          }),
+    );
+  }
+
   changeLocale(Locale locale) {
     Get.updateLocale(locale);
     Get.back();
@@ -85,7 +111,7 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
         backgroundColor: Colors.transparent,
         body: Center(
           child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               alignment: Alignment.center,
               width: 300,
               height: 200,

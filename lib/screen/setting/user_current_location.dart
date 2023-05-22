@@ -1,3 +1,4 @@
+import 'package:floor/floor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/controller/setting_controller/user_location_contoller.dart';
@@ -9,28 +10,30 @@ class GetUserCurrentLocationScreen extends GetView<UserLocationController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.init(context);
+
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.location_searching_rounded),
-      ),
-      body: SafeArea(
-        child: GoogleMap(
-          zoomControlsEnabled: false,
-          onTap: (LatLng latLng) {
-            print(latLng);
-            controller.onlaunceMap(latLng);
-          },
-          initialCameraPosition: controller.kGooglePlex,
-          mapType: MapType.normal,
-          markers: Set<Marker>.of(controller.markers),
-          compassEnabled: false,
-          myLocationEnabled: true,
-          onMapCreated: (GoogleMapController cont) {
-            controller.googlecontroller.complete(cont);
-          },
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.location_searching_rounded),
         ),
-      ),
-    );
+        body: SafeArea(
+          child: GoogleMap(
+            zoomControlsEnabled: false,
+            onTap: (LatLng latLng) {
+              print(latLng);
+              controller.onlaunceMap(latLng);
+            },
+            initialCameraPosition: controller.kGooglePlex,
+            mapType: MapType.normal,
+            markers: Set<Marker>.of(controller.markers),
+            compassEnabled: false,
+            myLocationEnabled: true,
+            onMapCreated: (GoogleMapController cont) {
+              controller.googlecontroller.complete(cont);
+              cont.setMapStyle(controller.maptheme.value);
+            },
+          ),
+        ),);
   }
 }

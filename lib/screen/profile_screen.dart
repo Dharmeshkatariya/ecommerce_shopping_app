@@ -7,6 +7,8 @@ import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
+import '../utills/appcolor.dart';
+
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -14,17 +16,15 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: AppColor.white,
           leading: GestureDetector(
               onTap: () {
                 Get.back();
               },
               child: const Icon(Icons.keyboard_arrow_left)),
-          backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
             "profile".tr,
-            style: const TextStyle(color: Colors.black),
           ),
         ),
         body: Obx(
@@ -156,7 +156,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         style: GoogleFontsStyle.poppins(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            color: Colors.grey),
+                            color: AppColor.grey),
                       ),
                     ],
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/signup_screen_controller.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +31,9 @@ class SignUpScreen extends GetView<SignUpScreenController> {
                           "welcome".tr,
                           textAlign: TextAlign.center,
                           style: GoogleFontsStyle.poppins(
-                              fontSize: 30, fontWeight: FontWeight.w600),
+                              color: AppColor.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600),
                         ),
                         Card(
                           margin: const EdgeInsets.symmetric(vertical: 10),
@@ -160,9 +163,10 @@ class SignUpScreen extends GetView<SignUpScreenController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _text(text: "alreadyAccount".tr, color: Colors.grey),
+        _text(text: "alreadyAccount".tr, color: AppColor.grey),
         _text(
             text: "signIn".tr,
+            color: AppColor.black,
             onTap: () {
               Get.toNamed(NameRoutes.loginScreen);
             }),

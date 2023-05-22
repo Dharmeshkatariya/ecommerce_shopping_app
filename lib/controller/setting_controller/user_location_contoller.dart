@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,11 +12,24 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserLocationController extends GetxController {
+  RxString maptheme = "".obs;
+
+  init(BuildContext context) {
+    DefaultAssetBundle.of(context)
+        .loadString("assets/maptheme/silver.json")
+        .then((string) {
+      maptheme.value = string;
+      update();
+    });
+  }
+
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission()
         .then((value) {})
         .onError((error, stackTrace) {
       print(error.toString());
+      update();
+
     });
 
     return await Geolocator.getCurrentPosition();
@@ -45,15 +59,17 @@ class UserLocationController extends GetxController {
         .asUint8List();
   }
 
-
-
   loadData() {
+    update();
+
     getUserCurrentLocation().then((value) async {
-      List<Placemark> placeMarks = await placemarkFromCoordinates(value.latitude, value.longitude);
-      var stADD = "${placeMarks.reversed.last.country} ${placeMarks.reversed.last.subLocality}";
+      List<Placemark> placeMarks =
+          await placemarkFromCoordinates(value.latitude, value.longitude);
+      var stADD =
+          "${placeMarks.reversed.last.country} ${placeMarks.reversed.last.subLocality}";
       final Uint8List markerIcon =
           await getBytesFromAsset('assets/image/marker.png', 100);
-      update();
+
       markers.add(
         Marker(
             markerId: const MarkerId("2"),
@@ -61,11 +77,13 @@ class UserLocationController extends GetxController {
             position: LatLng(value.latitude, value.longitude),
             infoWindow: InfoWindow(title: stADD)),
       );
+      update();
 
       CameraPosition cameraPosition = CameraPosition(
-          zoom: 14, target: LatLng(value.latitude, value.longitude));
+          zoom: 16, target: LatLng(value.latitude, value.longitude));
       final GoogleMapController mapController = await googlecontroller.future;
-      mapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      mapController
+          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
     });
     update();
   }
@@ -73,6 +91,8 @@ class UserLocationController extends GetxController {
   @override
   void onInit() {
     loadData();
+    update();
+
     // TODO: implement onInit
     super.onInit();
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_shoping/controller/setting_controller/shipping_address_controller.dart';
 import 'package:furniture_shoping/modal/entity/address_entity.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -13,14 +14,14 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
     controller.getProductData();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColor.white,
           child: IconButton(
             onPressed: () {
               Get.toNamed(NameRoutes.addShippingAddressScreen);
             },
             icon: const Icon(
               Icons.add,
-              color: Colors.black,
+              color: AppColor.black,
             ),
           ),
           onPressed: () {},
@@ -31,12 +32,12 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
                 Get.back();
               },
               child: const Icon(Icons.arrow_back_ios_rounded)),
-          backgroundColor: Colors.white,
-          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: AppColor.white,
+          iconTheme: const IconThemeData(color: AppColor.black),
           centerTitle: true,
-          title:  Text(
+          title: Text(
             "shipAddress".tr,
-            style:const  TextStyle(color: Colors.black),
+            style: const TextStyle(color: AppColor.black),
           ),
         ),
         body: controller.obx(
@@ -58,7 +59,7 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
                     ],
                   ),
                 ),
-            onLoading:const  Center(
+            onLoading: const Center(
               child: CircularProgressIndicator(),
             )));
   }
@@ -73,7 +74,9 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
             Text(
               address.name,
               style: GoogleFontsStyle.poppins(
-                  fontSize: 18, fontWeight: FontWeight.w600),
+                  color: AppColor.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
             ),
             const Divider(
               height: 30,
@@ -81,6 +84,7 @@ class ShippingAddressScreen extends GetView<ShippingAddressController> {
             Text(
               "${address.address},${address.zipcode},${address.country},${address.city},",
               style: GoogleFontsStyle.poppins(
+                color: AppColor.black,
                   fontSize: 14, fontWeight: FontWeight.w400),
             ),
           ],

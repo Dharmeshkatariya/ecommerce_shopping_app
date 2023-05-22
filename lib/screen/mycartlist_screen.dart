@@ -4,12 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/mycartscreen_controller.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:get/get.dart';
 
 import '../modal/entity/cart_entity.dart';
 
 class MyCartListScreen extends GetView<MYCartScreenController> {
+
   const MyCartListScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +20,10 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(
-            color: Colors.black,
+            color: AppColor.black,
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColor.white,
           leading: GestureDetector(
             onTap: () {
               Get.back();
@@ -31,7 +34,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
           ),
           title:  Text(
             "myCart".tr,
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(color: AppColor.black),
           ),
         ),
         body: Obx(() => Container(
@@ -50,8 +53,8 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       Text("total".tr),
-                      Text(controller.total.toString()),
+                       Text("total".tr,style: TextStyle(color: AppColor.grey),),
+                      Text(controller.total.toString(),style: TextStyle(color: AppColor.black),),
                     ],
                   ),
                   Common.button(
@@ -70,7 +73,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
     Cart cart = controller.cartList[index];
     return Container(
       width: double.infinity,
-      color: Colors.blue.shade50,
+
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Row(
         children: [
@@ -97,7 +100,7 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                       maxLines: 1,
                       softWrap: false,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                      style: const TextStyle(fontSize: 14, color: AppColor.grey),
                     ),
                     GestureDetector(
                         onTap: () {
@@ -109,22 +112,16 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text("Rs ${cart.cartProductPrice}"),
+                Text("Rs ${cart.cartProductPrice}",style: TextStyle(color: AppColor.black),),
                 const SizedBox(
                   height: 10,
-                ),
-                Row(
+                ), Row(
                   children: [
                     GestureDetector(
                       onTap: () {
-                        controller.selectedItem(
-                            index, true, cart.cartProductOty);
+                        controller.selectedItem(index, true, cart.cartProductOty);
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white60,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: const Icon(Icons.add),
+                      child: Container(decoration: BoxDecoration(color: AppColor.addIconWhite, borderRadius: BorderRadius.circular(5)), child: const Icon(Icons.add,color: AppColor.black,),
                       ),
                     ),
                     const SizedBox(
@@ -139,14 +136,13 @@ class MyCartListScreen extends GetView<MYCartScreenController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        controller.selectedItem(
-                            index, false, cart.cartProductOty);
+                        controller.selectedItem(index, false, cart.cartProductOty);
                       },
                       child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: AppColor.addIconWhite,
                               borderRadius: BorderRadius.circular(6)),
-                          child: const Icon(Icons.remove)),
+                          child: const Icon(Icons.remove,color: AppColor.black,)),
                     ),
                   ],
                 ),

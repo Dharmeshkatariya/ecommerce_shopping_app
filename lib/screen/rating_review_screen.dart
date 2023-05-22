@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/review_controller.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:get/get.dart';
 
 class RatingReviewScreen extends GetView<RatingReviewController> {
@@ -13,11 +14,11 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: AppColor.black),
+        backgroundColor: AppColor.white,
         title: Text(
           "rating".tr,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: AppColor.black),
         ),
       ),
       body: Container(
@@ -88,7 +89,7 @@ class RatingReviewScreen extends GetView<RatingReviewController> {
                       itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
                       itemBuilder: (context, _) => const Icon(
                         Icons.star,
-                        color: Colors.amber,
+                        color: AppColor.amber,
                       ),
                       onRatingUpdate: (rating) {
                         print(rating);

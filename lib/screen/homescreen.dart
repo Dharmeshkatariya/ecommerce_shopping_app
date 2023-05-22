@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/controller/homescreen_controller.dart';
 import 'package:furniture_shoping/modal/homescreen_modal/category_modal.dart';
 import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
@@ -17,18 +18,18 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.search, color: Colors.grey.shade600),
+          icon: Icon(Icons.search, color: AppColor.homeScreenIcon),
         ),
         actions: [
           IconButton(
             onPressed: () {
               Get.toNamed(NameRoutes.myCartScreen);
             },
-            icon: const Icon(Icons.add_shopping_cart, color: Colors.grey),
+            icon: const Icon(Icons.add_shopping_cart, color: AppColor.grey,),
           )
         ],
         title: Text(
@@ -37,7 +38,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           style: GoogleFontsStyle.inter(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Colors.grey.shade600),
+              color: AppColor.grey),
         ),
       ),
       body: controller.obx(
@@ -87,8 +88,7 @@ class HomeScreen extends GetView<HomeScreenController> {
         : controller.filterFinalList[index];
     return GestureDetector(
       onTap: () {
-        Get.toNamed(NameRoutes.productDetailScreen,
-            arguments: {"productData": productData,"index" : index});
+        Get.toNamed(NameRoutes.productDetailScreen, arguments: {"productData": productData,"index" : index});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,11 +96,11 @@ class HomeScreen extends GetView<HomeScreenController> {
           _imageStack(productData),
           _text(
             text: productData.productName,
-            color: Colors.grey,
+            color: AppColor.grey,
           ),
           _text(
               text: " Rs ${productData.productPrice}",
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,color: AppColor.black),
         ],
       ),
     );
@@ -119,8 +119,8 @@ class HomeScreen extends GetView<HomeScreenController> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               color: index == controller.selectedIndex.value
-                  ? Colors.black
-                  : Colors.pink.shade100,
+                  ? AppColor.black
+                  : AppColor.pink,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.network(
@@ -132,7 +132,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           Text(
             categoryData.categoryName,
             style: GoogleFontsStyle.poppins(
-                fontWeight: FontWeight.w600, fontSize: 14),
+                fontWeight: FontWeight.w600, fontSize: 14,color: AppColor.black),
           )
         ],
       ),
@@ -171,7 +171,7 @@ class HomeScreen extends GetView<HomeScreenController> {
               onTap: () {},
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColor.white,
                     borderRadius: BorderRadius.circular(8)),
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: SvgPicture.asset("assets/icon/shopbeg.svg"),

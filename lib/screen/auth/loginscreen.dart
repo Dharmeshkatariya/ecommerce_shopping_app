@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -23,8 +24,7 @@ class LogInScreen extends GetView<LogInScreenController> {
               )
             : SingleChildScrollView(
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(
                     children: [
                       Common.headerRow(),
@@ -32,6 +32,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                         "welcomeBack".tr,
                         textAlign: TextAlign.center,
                         style: GoogleFontsStyle.poppins(
+                          color: AppColor.black,
                             fontSize: 30, fontWeight: FontWeight.w600),
                       ),
                       _commonPadding(),

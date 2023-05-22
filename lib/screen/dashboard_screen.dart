@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/controller/dashboard_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class DashBoardScreen extends GetView<DashBoardScreenController> {
           bottomNavigationBar: Container(
             height: 60,
             decoration: BoxDecoration(
-              color: Colors.blue.shade50,
+              color: AppColor.bottomNavigation,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),

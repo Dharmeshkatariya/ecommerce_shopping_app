@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,17 +13,17 @@ class PaymentMethodScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         onPressed: () {},
         child: const Icon(
           Icons.add,
-          color: Colors.black,
+          color: AppColor.black,
         ),
       ),
       appBar: AppBar(
         title:  Text(
           "paymentMethod".tr,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: AppColor.black),
         ),
         centerTitle: true,
         leading: GestureDetector(
@@ -30,8 +31,8 @@ class PaymentMethodScreen extends StatelessWidget {
               Get.back();
             },
             child: const Icon(Icons.keyboard_arrow_left)),
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: AppColor.black),
+        backgroundColor: AppColor.white,
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -39,7 +40,7 @@ class PaymentMethodScreen extends StatelessWidget {
           children: [
             Card(
               elevation: 10,
-              color: Colors.black,
+              color: AppColor.black,
               borderOnForeground: true,
               child: SizedBox(
                 width: double.infinity,
@@ -70,11 +71,11 @@ class PaymentMethodScreen extends StatelessWidget {
                         children: const [
                           Text(
                             "card user bname",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: AppColor.white),
                           ),
                           Text(
                             "Expiry date",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: AppColor.white),
                           ),
                         ],
                       ),
@@ -83,11 +84,11 @@ class PaymentMethodScreen extends StatelessWidget {
                         children: const [
                           Text(
                             "user bname",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: AppColor.white),
                           ),
                           Text(
                             "20/25",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: AppColor.white),
                           ),
                         ],
                       )

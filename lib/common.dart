@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/modal/entity/address_entity.dart';
 import 'package:furniture_shoping/modal/entity/cart_entity.dart';
 import 'package:furniture_shoping/modal/entity/product_entity.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -153,13 +154,15 @@ class Common {
           width: width,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(8)),
+              color: AppColor.black, borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Text(
             text,
             style: GoogleFonts.inter(
-                fontWeight: FontWeight.w400, fontSize: 17, color: Colors.white),
+                fontWeight: FontWeight.w400,
+                fontSize: 17,
+                color: AppColor.white),
           ),
         ));
   }
@@ -178,12 +181,12 @@ class Common {
           labelText: labeltext,
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(color: Colors.grey)),
-          labelStyle: const TextStyle(color: Colors.grey),
+              borderSide: BorderSide(color: AppColor.grey)),
+          labelStyle: const TextStyle(color: AppColor.grey),
           hintText: labeltext,
-          hintStyle: const TextStyle(color: Colors.black),
-          focusColor: Colors.black,
-          hoverColor: Colors.black,
+          hintStyle: const TextStyle(color: AppColor.black),
+          focusColor: AppColor.black,
+          hoverColor: AppColor.black,
           suffixIcon: suficon,
           prefixIcon: preicon,
           border: OutlineInputBorder(
@@ -208,12 +211,12 @@ class Common {
           labelText: labeltext,
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(color: Colors.grey)),
-          labelStyle: const TextStyle(color: Colors.grey),
+              borderSide: BorderSide(color: AppColor.grey)),
+          labelStyle: const TextStyle(color: AppColor.grey),
           hintText: labeltext,
-          hintStyle: const TextStyle(color: Colors.black),
-          focusColor: Colors.black,
-          hoverColor: Colors.black,
+          hintStyle: const TextStyle(color: AppColor.black),
+          focusColor: AppColor.black,
+          hoverColor: AppColor.black,
           suffixIcon: suficon,
           prefixIcon: preicon,
           border: OutlineInputBorder(
@@ -227,7 +230,7 @@ class Common {
       children: [
         Expanded(
             child: Container(
-          color: Colors.black,
+          color: AppColor.black,
           padding: const EdgeInsets.symmetric(vertical: 1),
         )),
         const Padding(
@@ -237,7 +240,7 @@ class Common {
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
         Expanded(
             child: Container(
-          color: Colors.black,
+          color: AppColor.black,
           padding: const EdgeInsets.symmetric(vertical: 1),
         )),
       ],
@@ -284,12 +287,12 @@ class Common {
       onTap: onTap,
       child: Container(
           decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(20)),
+              color: AppColor.black, borderRadius: BorderRadius.circular(20)),
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
           child: Text(
             text,
             style: GoogleFontsStyle.poppins(
-                fontWeight: FontWeight.w400, fontSize: 16, color: Colors.white),
+                fontWeight: FontWeight.w400, fontSize: 16, color: AppColor.white),
           )),
     );
   }

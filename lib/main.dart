@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:furniture_shoping/routes/pageroute.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
+import 'package:furniture_shoping/utills/theme.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'langauge/langauge.dart';
 
 void main() {
@@ -14,30 +15,50 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp
-
-  ({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // MaterialColor mainAppColor = const MaterialColor(0xFFFFFFFF, <int, Color>{
+    //   50: Color(0xFFFFFFFF),
+    //   100: Color(0xFFFFFFFF),
+    //   200: Color(0xFFFFFFFF),
+    //   300: Color(0xFFFFFFFF),
+    //   400: Color(0xFFFFFFFF),
+    //   500: Color(0xFFFFFFFF),
+    //   600: Color(0xFFFFFFFF),
+    //   700: Color(0xFFFFFFFF),
+    //   800: Color(0xFFFFFFFF),
+    //   900: Color(0xFFFFFFFF),
+    // });
+    //
+    // MaterialColor mainAppColorDark = const MaterialColor(0xFF000000, <int, Color>{
+    //   50: Color(0xFF000000),
+    //   100: Color(0xFF000000),
+    //   200: Color(0xFF000000),
+    //   300: Color(0xFF000000),
+    //   400: Color(0xFF000000),
+    //   500: Color(0xFF000000),
+    //   600: Color(0xFF000000),
+    //   700: Color(0xFF000000),
+    //   800: Color(0xFF000000),
+    //   900: Color(0xFF000000),
+    // });
+
     return GetMaterialApp(
-
-
+      theme: AppTheme().lightTheme,
       translations: Langaugae(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),
       getPages: PageRoutes.pages,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.black),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage
-
-  ({super.key, required this.title});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -96,7 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Positioned(
               left: 20,
               right: 20,
-
               bottom: 20,
               child: Common.button(text: "Get Started"),
             ),
@@ -105,5 +125,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 }

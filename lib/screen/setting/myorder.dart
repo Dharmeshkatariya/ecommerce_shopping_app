@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/setting_controller/my_order_coontroller.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -18,13 +19,13 @@ class MyOrderScreen extends GetView<MyOrderController> {
                 Get.back();
               },
               child: const Icon(Icons.arrow_back_ios_rounded)),
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(color: AppColor.black),
+          backgroundColor: AppColor.white,
           centerTitle: true,
           title: Text(
             "myOrder".tr,
             style: GoogleFontsStyle.poppins(
-                color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16),
+                color: AppColor.black, fontWeight: FontWeight.w600, fontSize: 16),
           ),
         ),
         body: Obx(
@@ -66,8 +67,8 @@ class MyOrderScreen extends GetView<MyOrderController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("orderNo".tr),
-        Text("date".tr),
+        Text("orderNo".tr,style: const TextStyle(color: AppColor.black),),
+        Text("date".tr,style: const TextStyle(color: AppColor.black),),
       ],
     );
   }
@@ -77,7 +78,7 @@ class MyOrderScreen extends GetView<MyOrderController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Common.smallButton(text: "detail".tr, onTap: () {}),
-        Text("cancel".tr),
+        Text("cancel".tr,style: TextStyle(color: AppColor.white),),
       ],
     );
   }
@@ -88,11 +89,11 @@ class MyOrderScreen extends GetView<MyOrderController> {
       children: [
         Text(
           "${"quantity".tr}: ${controller.qty.value}",
-          style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
+          style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600,color: AppColor.black),
         ),
         Text(
           "${"totalAmount".tr}: ${controller.qty.value}",
-          style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600),
+          style: GoogleFontsStyle.poppins(fontWeight: FontWeight.w600,color: AppColor.black),
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -23,10 +24,15 @@ class SuccessOrderScreen extends StatelessWidget {
                     Text(
                       "success".tr,
                       style: GoogleFontsStyle.poppins(
-                          fontWeight: FontWeight.w600, fontSize: 32),
+                          color: AppColor.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 32),
                     ),
                     Image.asset("assets/image/orderdone.png"),
-                    Text("orderComing".tr),
+                    Text(
+                      "orderComing".tr,
+                      style: TextStyle(color: AppColor.black),
+                    ),
                   ],
                 ),
               ),

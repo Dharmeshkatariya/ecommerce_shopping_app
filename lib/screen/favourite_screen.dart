@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/favoutire_controller.dart';
 import 'package:get/get.dart';
@@ -15,14 +16,24 @@ class FavouriteScreen extends GetView<FavouriteController> {
     controller.itemList.clear();
     controller.getProductData();
     controller.getProductCartData();
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        leading: GestureDetector(
+          onTap: (){
+            Get.back();
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_rounded,
+            color: AppColor.black,
+          ),
+        ),
+        backgroundColor: AppColor.white,
         centerTitle: true,
         title: Text(
           "favourite".tr,
           style: const TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+              fontWeight: FontWeight.bold, fontSize: 16, color: AppColor.black),
         ),
       ),
       body: controller.obx(
@@ -100,7 +111,7 @@ class FavouriteScreen extends GetView<FavouriteController> {
                     const Spacer(),
                     const Icon(Icons.shopping_cart),
                     Checkbox(
-                      checkColor: Colors.white,
+                      checkColor: AppColor.white,
                       value: product.isSelect,
                       onChanged: (bool? value) {
                         controller.selectedIndex(index, value);

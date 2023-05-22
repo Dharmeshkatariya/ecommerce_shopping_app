@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_shoping/common.dart';
 import 'package:furniture_shoping/controller/product_detail_screen_controller.dart';
-import 'package:furniture_shoping/modal/homescreen_modal/peroduct_modal.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
+import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +26,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
                       _text(
                           text: controller.productData!.categoryName,
                           fontWeight: FontWeight.w400,
+                          color: AppColor.grey,
                           fontSize: 24),
                       _qtyRow(),
                       _reviewRow(),
@@ -33,7 +34,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
                           text: controller.productData!.description,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: Colors.grey),
+                          color: AppColor.grey),
                       _bottomRow()
                     ],
                   ),
@@ -48,17 +49,18 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
         _text(
             text: "Rs ${controller.productData!.productPrice}",
             fontWeight: FontWeight.w600,
+            color: AppColor.black,
             fontSize: 32),
         const Spacer(),
         GestureDetector(
             onTap: () {
               controller.updateQty(true);
             },
-            child: const Icon(Icons.add)),
+            child: const Icon(Icons.add,color: AppColor.black,)),
         const SizedBox(
           width: 20,
         ),
-        Text("${controller.productQty.value}"),
+        Text("${controller.productQty.value}",style: TextStyle(color: AppColor.black),),
         const SizedBox(
           width: 20,
         ),
@@ -66,7 +68,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
             onTap: () {
               controller.updateQty(false);
             },
-            child: SvgPicture.asset("assets/icon/minus.svg")),
+            child: SvgPicture.asset("assets/icon/minus.svg",color: AppColor.black)),
         const SizedBox(
           width: 20,
         ),
@@ -128,7 +130,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
             left: 30,
             child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColor.white,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: GestureDetector(
@@ -142,7 +144,7 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(50)),
+                  color: AppColor.white, borderRadius: BorderRadius.circular(50)),
               child: Image.asset(
                 "assets/image/framecircle.png",
                 height: 200,
@@ -164,10 +166,11 @@ class ProductDetailScreen extends GetView<ProductDetailScreenController> {
           child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               decoration: BoxDecoration(
-                  color: controller.isDisable.value? Colors.grey  : Colors.green , borderRadius: BorderRadius.circular(12)),
+                  color: controller.isDisable.value?
+                  AppColor.grey  : AppColor.green , borderRadius: BorderRadius.circular(12)),
               child: Image.asset(
                 "assets/image/save.png",
-                color: Colors.white,
+                color: AppColor.white,
               )),
         ),
         Common.button(
