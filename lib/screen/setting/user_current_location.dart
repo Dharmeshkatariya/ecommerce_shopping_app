@@ -14,7 +14,9 @@ class GetUserCurrentLocationScreen extends GetView<UserLocationController> {
 
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.loadData();
+          },
           child: const Icon(Icons.location_searching_rounded),
         ),
         body: SafeArea(

@@ -14,6 +14,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getUserImage();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.white,
@@ -39,22 +40,32 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                       Stack(
                         children: [
                           ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: controller.imagePath.isEmpty
-                                  ? Image.asset(
-                                      "assets/image/userprofile.png",
-                                      height: 100,
-                                      width: 100,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.file(
-                                      File(
-                                        controller.imagePath.value,
+                            borderRadius: BorderRadius.circular(50),
+                            child: controller.userImage.isEmpty && controller.imagePath.isEmpty
+                                ? Image.asset(
+                                    "assets/image/userprofile.png",
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  )
+                                : controller.userImage.isNotEmpty
+                                    ? Image.file(
+                                        File(
+                                          controller.userImage.value,
+                                        ),
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        File(
+                                          controller.imagePath.value,
+                                        ),
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
                                       ),
-                                      height: 100,
-                                      width: 100,
-                                      fit: BoxFit.cover,
-                                    )),
+                          ),
                           Positioned(
                               right: 12,
                               bottom: 10,
