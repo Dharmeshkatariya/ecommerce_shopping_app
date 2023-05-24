@@ -79,6 +79,8 @@ class LogInScreenController extends GetxController {
   void dispose() {
     emailController.dispose();
     passController.dispose();
+    passController.clear();
+    emailController.clear();
     super.dispose();
   }
 

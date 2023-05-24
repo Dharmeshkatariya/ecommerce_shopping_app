@@ -56,6 +56,10 @@ class SignUpScreenController extends GetxController {
     passController.dispose();
     mobileController.dispose();
     confirmPassController.dispose();
+    emailController.clear();
+    passController.clear();
+    mobileController.clear();
+    confirmPassController.clear();
     super.dispose();
   }
 }

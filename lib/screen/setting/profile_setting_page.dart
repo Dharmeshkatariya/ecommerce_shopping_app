@@ -128,7 +128,7 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
                     "Are You Sure for you want to change the language?",
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
-                  SizedBox(
+                 const  SizedBox(
                     height: 20,
                   ),
                   Row(
