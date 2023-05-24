@@ -5,12 +5,14 @@ import 'package:furniture_shoping/utills/appcolor.dart';
 import 'package:furniture_shoping/utills/google_font.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:pay/pay.dart';
 
 class PaymentMethodScreen extends StatelessWidget {
   const PaymentMethodScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<PaymentItem> payitem = [];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.white,
@@ -21,13 +23,13 @@ class PaymentMethodScreen extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title:  Text(
+        title: Text(
           "paymentMethod".tr,
           style: const TextStyle(color: AppColor.black),
         ),
         centerTitle: true,
         leading: GestureDetector(
-            onTap: (){
+            onTap: () {
               Get.back();
             },
             child: const Icon(Icons.keyboard_arrow_left)),
@@ -91,15 +93,24 @@ class PaymentMethodScreen extends StatelessWidget {
                             style: TextStyle(color: AppColor.white),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
+            GooglePayButton(
+              onPressed: () {},
+              type: GooglePayButtonType.buy,
+              paymentConfigurationAsset: "gpay.json",
+              onPaymentResult: googlePayResult,
+              paymentItems: payitem,
+            ),
           ],
         ),
       ),
     );
   }
+
+  googlePayResult(res) {}
 }
