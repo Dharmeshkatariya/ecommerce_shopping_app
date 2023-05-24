@@ -15,6 +15,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   @override
   Widget build(BuildContext context) {
     controller.getUserImage();
+    controller.getUserData();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.white,
@@ -86,12 +87,12 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.username,
+                            controller.username.value,
                             style: GoogleFontsStyle.inter(
                                 fontWeight: FontWeight.w700, fontSize: 20),
                           ),
                           Text(
-                            controller.email,
+                            controller.email.value,
                             overflow: TextOverflow.clip,
                             maxLines: 1,
                             style: Theme.of(context).textTheme.labelSmall,

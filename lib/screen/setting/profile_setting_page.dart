@@ -116,12 +116,12 @@ class ProfileSettingScreen extends GetView<ProfileSettingController> {
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                color: Colors.blue[100],
+                color: Colors.orange.shade50,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Column(
                 children: [
-                  SizedBox(
+                  const  SizedBox(
                     height: 50,
                   ),
                   const Text(

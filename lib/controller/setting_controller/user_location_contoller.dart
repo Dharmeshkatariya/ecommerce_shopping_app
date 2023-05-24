@@ -90,7 +90,7 @@ class UserLocationController extends GetxController {
 
   @override
   void onInit() {
-
+    loadData();
     // TODO: implement onInit
     super.onInit();
   }
