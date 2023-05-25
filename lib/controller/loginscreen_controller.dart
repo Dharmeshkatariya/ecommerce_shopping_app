@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:furniture_shoping/firebase_service/firebase_services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../api/rest_client.dart';
@@ -73,6 +74,12 @@ class LogInScreenController extends GetxController {
       Get.snackbar("field", "$e");
     }
     update();
+  }
+
+
+  loginWithGoogle(){
+    AuthMethod().googleSignInUser();
+
   }
 
   @override

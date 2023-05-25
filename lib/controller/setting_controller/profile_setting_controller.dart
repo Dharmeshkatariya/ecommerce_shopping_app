@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furniture_shoping/firebase_service/firebase_services.dart';
 import 'package:furniture_shoping/routes/nameroutes.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,6 +47,7 @@ class ProfileSettingController extends GetxController {
   }
 
   logout() async {
+    AuthMethod().googleSignOut();
     var shareP = await SharedPreferences.getInstance();
 
     shareP.remove("login");

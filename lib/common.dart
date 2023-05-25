@@ -288,7 +288,7 @@ class Common {
       child: Container(
           decoration: BoxDecoration(
               color: AppColor.black, borderRadius: BorderRadius.circular(20)),
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Text(
             text,
             style: GoogleFontsStyle.poppins(
