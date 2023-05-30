@@ -7,6 +7,7 @@ class ProfileScreenController extends GetxController {
   RxString imagePath = "".obs;
   RxString userImage = "".obs;
   RxString email = "".obs;
+  RxString googleImage ="".obs;
   RxString username = "".obs;
 
   getImageGallery() async {
@@ -33,6 +34,7 @@ class ProfileScreenController extends GetxController {
   getUserImage() async {
     var shareP = await SharedPreferences.getInstance();
     userImage.value = shareP.getString("userimage") ?? "";
+    googleImage.value = shareP.getString("googleImage") ?? "";
     update();
   }
 

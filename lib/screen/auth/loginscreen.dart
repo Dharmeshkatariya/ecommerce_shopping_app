@@ -112,7 +112,7 @@ class LogInScreen extends GetView<LogInScreenController> {
                                     const Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 10, vertical: 10)),
-                                    Text(
+                                const     Text(
                                       "OR",
                                       style: TextStyle(
                                           fontSize: 20,

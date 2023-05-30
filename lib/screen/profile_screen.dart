@@ -58,14 +58,14 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                                         width: 100,
                                         fit: BoxFit.cover,
                                       )
-                                    : Image.file(
+                                    : controller.googleImage.isEmpty? Image.file(
                                         File(
                                           controller.imagePath.value,
                                         ),
                                         height: 100,
                                         width: 100,
                                         fit: BoxFit.cover,
-                                      ),
+                                      ) : Image.network(controller.googleImage.value),
                           ),
                           Positioned(
                               right: 12,
